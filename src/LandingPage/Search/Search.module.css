@@ -1,0 +1,31 @@
+.container {
+  width: 40%;
+  margin: auto;
+  background: hsl(257, 27%, 26%) url("../../Image/bg-boost-desktop.svg");
+  background-size: cover;
+  height: 10vh;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.form-input {
+  width: 65%;
+  padding: 10px 20px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+}
+.form-input::placeholder {
+  color: hsl(257, 7%, 63%);
+}
+.form-button {
+  width: 10rem;
+  border-radius: 5px;
+}
