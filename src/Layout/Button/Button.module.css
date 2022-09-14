@@ -1,0 +1,14 @@
+.primary {
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  background-color: hsl(180, 66%, 49%);
+  height: fit-content;
+  color: white;
+  font-weight: bold;
+}
+.primary:hover {
+  cursor: pointer;
+  background-color: hsla(180, 66%, 49%, 0.719);
+}
