@@ -8,6 +8,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
+  /* margin-bottom: -5vh; */
 }
 .form {
   width: 90%;
@@ -28,4 +30,9 @@
 .form-button {
   width: 10rem;
   border-radius: 5px;
+}
+@media (max-width: 1200px) {
+  .container {
+    width: 95vw;
+  }
 }

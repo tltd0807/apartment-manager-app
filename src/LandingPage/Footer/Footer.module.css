@@ -1,0 +1,21 @@
+section {
+  background: hsl(257, 27%, 26%) url("../../Image/bg-boost-desktop.svg");
+  background-size: cover;
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+section h2 {
+  margin-top: 0;
+}
+footer {
+  width: 100%;
+  color: hsl(257, 7%, 63%);
+  background-color: hsl(260, 8%, 14%);
+  padding: 20px 60px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+}
