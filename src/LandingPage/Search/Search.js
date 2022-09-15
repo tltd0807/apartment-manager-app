@@ -3,7 +3,7 @@ import classes from "./Search.module.css";
 
 const Search = (props) => {
   return (
-    <div className={classes.container}>
+    <div className={`${classes.container} ${props.className}`}>
       <form className={classes.form}>
         <input
           className={classes["form-input"]}

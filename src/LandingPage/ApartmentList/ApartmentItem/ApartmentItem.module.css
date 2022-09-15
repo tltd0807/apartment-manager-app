@@ -1,7 +1,36 @@
 .container {
-  width: 22rem;
-  height: 17rem;
-  background-color: aliceblue;
+  width: 20rem;
+  /* height: fit-content; */
+  background-color: hsl(0, 0%, 95%);
   margin: 10px;
-  border: 1px solid black;
+  /* border: 1px solid hsl(257, 27%, 26%); */
+  border-radius: 10px;
+  overflow: hidden;
+}
+.apartment-img {
+  width: 100%;
+}
+.title {
+  width: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.brief-detail {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+.number-room {
+  color: hsl(260, 5%, 39%);
+}
+.price {
+  color: hsl(0, 87%, 67%);
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+span {
+  color: hsl(0, 87%, 67%);
+  font-weight: bold;
 }
