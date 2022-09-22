@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import Button from "../../Layout/Button/Button";
 import Search from "../Search/Search";
@@ -8,26 +8,33 @@ import classes from "./ApartmentList.module.css";
 
 const ApartmentList = (props) => {
   const [apartmentArr, setApartmentArr] = useState([]);
-  const getData = async () => {
+
+  // ngăn cho getData re-create khi ApartmentList re-eveluating
+  const getData = useCallback(async (pageNumber) => {
     try {
       const res = await axios.get(
-        "https://buildingmanager-api.herokuapp.com/api/System/items?PageNumber=0"
+        `https://buildingmanager-api.herokuapp.com/api/System/items?PageNumber=${pageNumber}`
       );
       // "https://buildingmanager-api.herokuapp.com/api/System/items?PageNumber=0"
 
       // Sử dụng cái này khi mà cần update state dựa trên state cũ
-      // setApartmentArr((apartmentArr) => [
-      //   ...apartmentArr,
-      //   ...[...res["data"]["data"]],
-      // ]);
-      setApartmentArr([...res["data"]["data"]]);
+
+      if (pageNumber === 0) {
+        setApartmentArr([...res["data"]["data"]]);
+      } else {
+        // nếu pageNumber >0 thì xử lý cho button xem thêm
+        setApartmentArr((apartmentArr) => [
+          ...apartmentArr,
+          ...[...res["data"]["data"]],
+        ]);
+      }
     } catch (e) {
       console.log("ERROR", e);
     }
-  };
+  }, []);
 
   useEffect(() => {
-    getData();
+    getData(0);
   }, []);
 
   return (
