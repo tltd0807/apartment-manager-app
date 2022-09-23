@@ -1,4 +1,4 @@
-section {
+.footer-section {
   background: hsl(257, 27%, 26%) url("../../Image/bg-boost-desktop.svg");
   background-size: cover;
   padding: 40px 0;
@@ -7,7 +7,7 @@ section {
   align-items: center;
   color: white;
 }
-section h2 {
+.footer-section h2 {
   margin-top: 0;
 }
 footer {

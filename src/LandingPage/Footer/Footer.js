@@ -4,7 +4,7 @@ import classes from "./Footer.module.css";
 const Footer = () => {
   return (
     <>
-      <section>
+      <section className={classes["footer-section"]}>
         <h2>Mua căn hộ ngay hôm nay</h2>
         <Button>Đăng nhập</Button>
       </section>
