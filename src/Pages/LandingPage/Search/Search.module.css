@@ -1,7 +1,9 @@
 .container {
   width: 40%;
   margin: auto;
-  background: hsl(257, 27%, 26%) url("../../Image/bg-boost-desktop.svg");
+  /* background: hsl(257, 27%, 26%) url("../../Image/bg-boost-desktop.svg"); */
+  background: hsl(257, 27%, 26%)
+    url("../../../assets/Image/bg-boost-desktop.svg");
   background-size: cover;
   height: 10vh;
   border-radius: 7px;

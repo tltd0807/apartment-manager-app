@@ -1,7 +1,7 @@
 import classes from "./Header.module.css";
 
-import Button from "../../Layout/Button/Button";
-import IMG from "../../Image/illustration-working.svg";
+import Button from "../../../Components/Layout/Button/Button";
+import IMG from "../../../assets/Image/illustration-working.svg";
 const Header = (props) => {
   return (
     <header className={classes.header}>

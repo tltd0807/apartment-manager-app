@@ -1,5 +1,6 @@
 .footer-section {
-  background: hsl(257, 27%, 26%) url("../../Image/bg-boost-desktop.svg");
+  background: hsl(257, 27%, 26%)
+    url("../../../assets/Image/bg-boost-desktop.svg");
   background-size: cover;
   padding: 40px 0;
   display: flex;

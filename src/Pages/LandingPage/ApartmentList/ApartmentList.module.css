@@ -1,9 +1,11 @@
+* {
+  box-sizing: border-box;
+}
 .list-container {
-  width: 100vw;
+  max-width: 100vw;
   position: relative;
   background-color: hsla(258, 27%, 26%, 0.195);
   z-index: 1;
-  /* margin-top: -5vh; */
   padding-top: 10vh;
   display: flex;
   flex-direction: column;

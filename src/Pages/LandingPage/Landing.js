@@ -8,7 +8,9 @@ const Landing = (props) => {
   return (
     <>
       <Header></Header>
-      <ApartmentList />
+      <main className={classes.container}>
+        <ApartmentList />
+      </main>
       <Footer />
     </>
   );

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 
-import Button from "../../Layout/Button/Button";
+import Button from "../../../Components/Layout/Button/Button";
 import Search from "../Search/Search";
 import ApartmentItem from "./ApartmentItem/ApartmentItem";
 import classes from "./ApartmentList.module.css";

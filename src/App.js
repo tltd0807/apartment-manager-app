@@ -1,13 +1,13 @@
 import "./App.css";
-import Landing from "./LandingPage/Landing";
-import UserPage from "./UserPage/UserPage";
-import AdminPage from "./AdminPage/AdminPage";
+import Landing from "./Pages/LandingPage/Landing";
+import UserPage from "./Pages/UserPage/UserPage";
+import AdminPage from "./Pages/AdminPage/AdminPage";
 function App() {
   return (
     <>
-      {/* <Landing /> */}
+      <Landing />
       {/* <UserPage></UserPage> */}
-      <AdminPage></AdminPage>
+      {/* <AdminPage></AdminPage> */}
     </>
   );
 }

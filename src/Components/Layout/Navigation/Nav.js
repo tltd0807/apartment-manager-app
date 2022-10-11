@@ -1,4 +1,4 @@
-import Button from "../../Layout/Button/Button";
+import Button from "../Button/Button";
 import classes from "./Nav.module.css";
 
 const Nav = (props) => {

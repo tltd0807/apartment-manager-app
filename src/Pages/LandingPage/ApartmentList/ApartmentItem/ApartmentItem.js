@@ -1,5 +1,4 @@
 import classes from "./ApartmentItem.module.css";
-import apartmentImg from "../../../Image/apartment-img.jpg";
 
 const ApartmentItem = (props) => {
   // console.log(props.type);

@@ -1,4 +1,4 @@
-import Nav from "./Navigation/Nav";
+import Nav from "../../Components/Layout/Navigation/Nav";
 import classes from "./AdminPage.module.css";
 
 const AdminPage = (props) => {
