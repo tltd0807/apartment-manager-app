@@ -8,6 +8,7 @@ import classes from "./ApartmentList.module.css";
 
 const ApartmentList = (props) => {
   const [apartmentArr, setApartmentArr] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   // ngăn cho getData re-create khi ApartmentList re-eveluating
   const getData = useCallback(async (pageNumber) => {
@@ -19,7 +20,7 @@ const ApartmentList = (props) => {
 
       // Sử dụng cái này khi mà cần update state dựa trên state cũ
 
-      if (pageNumber === 0) {
+      if (pageNumber === 1) {
         setApartmentArr([...res["data"]["data"]]);
       } else {
         // nếu pageNumber >0 thì xử lý cho button xem thêm
@@ -34,8 +35,8 @@ const ApartmentList = (props) => {
   }, []);
 
   useEffect(() => {
-    getData(0);
-  }, []);
+    getData(currentPage);
+  }, [currentPage]);
 
   return (
     <>
@@ -56,7 +57,12 @@ const ApartmentList = (props) => {
               />
             ))}
         </div>
-        <Button className={classes.btn}>Xem thêm</Button>
+        <Button
+          className={classes.btn}
+          onClick={() => setCurrentPage((currentPage) => currentPage + 1)}
+        >
+          Xem thêm
+        </Button>
       </div>
     </>
   );
