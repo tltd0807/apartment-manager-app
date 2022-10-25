@@ -1,4 +1,5 @@
 .container {
+  min-width: 563px;
   width: 40%;
   margin: auto;
   /* background: hsl(257, 27%, 26%) url("../../Image/bg-boost-desktop.svg"); */
@@ -18,7 +19,7 @@
   align-items: center;
   justify-content: space-between;
 }
-.form-input {
+/* .form-input {
   width: 65%;
   padding: 10px 20px;
   border-radius: 5px;
@@ -27,13 +28,20 @@
 }
 .form-input::placeholder {
   color: hsl(257, 7%, 63%);
-}
+} */
 .form-button {
-  width: 10rem;
+  width: 6rem;
+
   border-radius: 5px;
 }
 @media (max-width: 1200px) {
   .container {
     width: 95vw;
+    min-width: 0;
+  }
+  .form-button {
+    min-width: fit-content;
+    width: 15%;
+    font-size: 10px;
   }
 }
