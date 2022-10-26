@@ -1,13 +1,15 @@
 .header-cotainer {
-  background: hsl(257, 7%, 63%);
+  background: hsl(257, 27%, 26%);
   max-height: 5vh;
   padding: 20px 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: white;
 }
 .welcome-title {
   padding: 0;
+  color: white;
   margin: 0;
 }
 .header-right {

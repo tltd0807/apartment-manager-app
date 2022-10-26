@@ -2,11 +2,13 @@ import "./App.css";
 import Landing from "./Pages/LandingPage/Landing";
 import UserPage from "./Pages/UserPage/UserPage";
 import AdminPage from "./Pages/AdminPage/AdminPage";
+import Login from "./Pages/SignIn/SignIn";
 function App() {
   return (
     <>
-      <Landing />
-      {/* <UserPage></UserPage> */}
+      {/* <Login /> */}
+      {/* <Landing /> */}
+      <UserPage></UserPage>
       {/* <AdminPage></AdminPage> */}
     </>
   );

@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import Button from "../../../Components/Layout/Button/Button";
 import Search from "../Search/Search";
 import ApartmentItem from "./ApartmentItem/ApartmentItem";
+import { Api } from "../../../data/EndPoint";
 import classes from "./ApartmentList.module.css";
 
 const ApartmentList = (props) => {
@@ -13,10 +14,9 @@ const ApartmentList = (props) => {
 
   // ngăn cho getData re-create khi ApartmentList re-eveluating
   const getData = useCallback(async (pageNumber) => {
+    console.log(Api + pageNumber);
     try {
-      const res = await axios.get(
-        `https://buildingmanager-api.herokuapp.com/api/System/items?PageNumber=${pageNumber}`
-      );
+      const res = await axios.get(Api.getItems + pageNumber);
 
       if (pageNumber === 1) {
         setApartmentArr(res["data"]["data"]);
@@ -39,9 +39,7 @@ const ApartmentList = (props) => {
       getData(1);
     } else {
       try {
-        const res = await axios.get(
-          `https://buildingmanager-api.herokuapp.com/api/System/items?Types=${typeId}`
-        );
+        const res = await axios.get(Api.getItemsById + typeId);
         setApartmentArr(res.data.data);
       } catch (e) {
         console.log("ERROR", e);

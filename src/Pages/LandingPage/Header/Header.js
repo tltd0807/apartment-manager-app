@@ -22,7 +22,11 @@ const Header = (props) => {
             </div>
           </div>
           <div>
-            <img src={IMG} className={classes["content-img"]} />
+            <img
+              src={IMG}
+              className={classes["content-img"]}
+              alt="illustration-working"
+            />
           </div>
         </div>
       </div>
