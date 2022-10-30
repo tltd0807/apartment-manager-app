@@ -4,11 +4,15 @@ import classes from "./Nav.module.css";
 const Nav = (props) => {
   return (
     <nav className={classes["admin-nav"]}>
-      <Button>1</Button>
-      <Button>1</Button>
-      <Button>1</Button>
-      <div>2</div>
-      <div>3</div>
+      <div className={classes["nav-item"]} tabIndex={0}>
+        Apartment List
+      </div>
+      <div className={classes["nav-item"]} tabIndex={0}>
+        Request List
+      </div>
+      <div className={classes["nav-item"]} tabIndex={0}>
+        User List
+      </div>
     </nav>
   );
 };

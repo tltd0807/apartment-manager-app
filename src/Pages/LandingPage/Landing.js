@@ -6,13 +6,13 @@ import Footer from "./Footer/Footer";
 
 const Landing = (props) => {
   return (
-    <>
+    <section>
       <Header></Header>
       <main className={classes.container}>
         <ApartmentList />
       </main>
       <Footer />
-    </>
+    </section>
   );
 };
 export default Landing;

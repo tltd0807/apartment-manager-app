@@ -10,10 +10,10 @@ const UserHeader = (props) => {
         Welcome USERNAME {props.name}
       </h1>
       <div className={classes["header-right"]}>
-        <div>Thuê căn hộ</div>
-        <div>Thêm thành viên</div>
-        <div>Thanh toán hóa đơn</div>
-        <div>Yêu thích</div>
+        <div className={classes["header-item"]}>Thuê căn hộ</div>
+        <div className={classes["header-item"]}>Thêm thành viên</div>
+        <div className={classes["header-item"]}>Thanh toán hóa đơn</div>
+        <div className={classes["header-item"]}>Yêu thích</div>
         <Button>Đăng xuất</Button>
       </div>
     </header>
