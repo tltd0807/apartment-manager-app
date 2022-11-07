@@ -1,8 +1,12 @@
-import React, { useState, useRef } from "react";
-import { registerUser } from "../../API/authAPI";
+import React, { useState, useRef, useContext } from "react";
+import { registerUser, loginUser } from "../../API/authAPI";
 import Button from "../../Components/Layout/Button/Button";
+import AuthContext from "../../store/auth-context";
 import classes from "./SignIn.module.css";
+import { useNavigate } from "react-router-dom";
+
 const SignIn = () => {
+  const navigate = useNavigate();
   const [isLogIn, setIsLogIn] = useState(true);
   const userNameInput = useRef();
   const passwordInput = useRef();
@@ -11,6 +15,10 @@ const SignIn = () => {
   const phoneInput = useRef();
   const [signupFail, setSignupFail] = useState(false);
   const [signupFailMess, setSignupFailMess] = useState("");
+  const [signinFail, setSigninFail] = useState(false);
+
+  const authCtx = useContext(AuthContext);
+
   const toggleLogIn = () => {
     setIsLogIn((prevState) => !prevState);
   };
@@ -18,23 +26,45 @@ const SignIn = () => {
     event.preventDefault();
     // xử lý login here
 
-    const enteredUserName = userNameInput.current.value;
-    const enteredPassword = passwordInput.current.value;
-    const enteredConfirmInput = passwordConfirmInput.current.value;
-    const enteredEmail = emailInput.current.value;
-    const enteredPhone = phoneInput.current.value;
+    // const enteredUserName = userNameInput.current.value;
+    // const enteredPassword = passwordInput.current.value;
+    // const enteredConfirmInput = passwordConfirmInput.current.value;
+    // const enteredEmail = emailInput.current.value;
+    // const enteredPhone = phoneInput.current.value;
     // có thể validate input
 
     if (isLogIn) {
+      loginUser({
+        username: userNameInput.current.value,
+        password: passwordInput.current.value,
+      })
+        .then((res) => {
+          // login thanfh cong
+          console.log(res.roleId);
+          authCtx.login(res.token);
+          setSigninFail(false);
+          if (res.roleId === 1) {
+            navigate("/user");
+          } else {
+            navigate("/admin");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          setSigninFail(true);
+        });
     } else {
       registerUser({
-        username: enteredUserName,
-        password: enteredPassword,
-        email: enteredEmail,
-        phoneNumber: enteredPhone,
-        confirmPass: enteredConfirmInput,
+        username: userNameInput.current.value,
+        password: passwordInput.current.value,
+        email: emailInput.current.value,
+        phoneNumber: phoneInput.current.value,
+        confirmPass: passwordConfirmInput.current.value,
       })
-        .then((response) => setIsLogIn(true))
+        .then((response) => {
+          setIsLogIn(true);
+          setSignupFail(false);
+        })
         .catch((err) => {
           setSignupFailMess(err.response.data.message);
           console.log(err.response.data.message);
@@ -48,6 +78,11 @@ const SignIn = () => {
         <div className={classes["form-container"]}>
           <h2 className={classes.title}>Sign in</h2>
           <form className={classes.from} onSubmit={onSubmitHandler}>
+            {signinFail && (
+              <p className={classes["err-mess"]}>
+                Vui lòng kiểm tra lại username và mật khẩu
+              </p>
+            )}
             <div>
               <label htmlFor="userName">User Name: </label>
               <br />

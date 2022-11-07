@@ -7,3 +7,11 @@ export const registerUser = async (data) => {
   );
   return res.data;
 };
+
+export const loginUser = async (data) => {
+  const res = await axios.post(
+    `https://buildingmanager-api.herokuapp.com/api/System/login`,
+    data
+  );
+  return res.data;
+};

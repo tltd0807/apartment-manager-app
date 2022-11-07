@@ -6,7 +6,11 @@ import SignIn from "./Pages/SignIn/SignIn";
 import { Route, Routes } from "react-router-dom";
 import NotFound from "./Pages/ErrorPage/NotFound";
 import ApartmentPage from "./Pages/ApartmentPage/ApartmentPage";
+import { useContext } from "react";
+import AuthContext from "./store/auth-context";
 function App() {
+  const authCtx = useContext(AuthContext);
+  console.log(authCtx.isLoggedIn);
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
