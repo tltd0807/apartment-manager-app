@@ -1,0 +1,16 @@
+.content-container {
+  width: 100vw;
+  height: 100vh;
+}
+.img-container {
+  width: 500px;
+}
+.custom-dot li:nth-child(2) {
+  background-color: aqua;
+}
+.custom-dot li a {
+  background-color: rgb(33, 44, 44);
+}
+.custom-dot li a img {
+  border-radius: 50%;
+}

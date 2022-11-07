@@ -1,0 +1,9 @@
+import axios from "axios";
+
+export const registerUser = async (data) => {
+  const res = await axios.post(
+    `https://buildingmanager-api.herokuapp.com/api/System/register`,
+    data
+  );
+  return res.data;
+};

@@ -14,7 +14,6 @@ const ApartmentList = (props) => {
 
   // ngăn cho getData re-create khi ApartmentList re-eveluating
   const getData = useCallback(async (pageNumber) => {
-    console.log(Api + pageNumber);
     try {
       const res = await axios.get(Api.getItems + pageNumber);
 
