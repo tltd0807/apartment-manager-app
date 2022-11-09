@@ -2,7 +2,10 @@ import classes from "./Header.module.css";
 
 import Button from "../../../Components/Layout/Button/Button";
 import IMG from "../../../assets/Image/illustration-working.svg";
+import { useNavigate } from "react-router-dom";
 const Header = (props) => {
+  const navigate = useNavigate();
+
   return (
     <header className={classes.header}>
       <nav>
@@ -18,7 +21,7 @@ const Header = (props) => {
               Iaculis nunc sed augue lacus viverra vitae congue.
             </p>
             <div className={classes.login}>
-              <Button>Đăng nhập</Button>
+              <Button onClick={() => navigate("/signin")}>Đăng nhập</Button>
             </div>
           </div>
           <div>

@@ -1,16 +1,56 @@
-.content-container {
+.container {
   width: 100vw;
   height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content-container {
+  background-color: hsl(257, 7%, 63%);
+  display: flex;
+  padding: 20px 40px;
+  gap: 40px;
+  border-radius: 20px;
 }
 .img-container {
-  width: 500px;
+  max-width: 500px;
 }
-.custom-dot li:nth-child(2) {
-  background-color: aqua;
+.img-container img {
+  border-radius: 10px;
 }
-.custom-dot li a {
-  background-color: rgb(33, 44, 44);
+.info {
+  display: flex;
+  min-width: 200px;
+  justify-content: space-between;
 }
-.custom-dot li a img {
-  border-radius: 50%;
+.apartment-name {
+  text-align: center;
+  font-size: 24px;
+}
+.apartment-price {
+  font-size: 20px;
+  width: fit-content;
+  font-weight: bold;
+  position: relative;
+}
+.apartment-price::after {
+  content: "k/tháng";
+  position: absolute;
+  font-size: 15px;
+  font-weight: bold;
+  top: 0;
+  left: 10%0;
+  color: red;
+}
+.back-btn {
+  padding: 10px 20px;
+  border-radius: 7px;
+  outline: none;
+  border: none;
+  background-color: aquamarine;
+}
+.back-btn:hover {
+  cursor: pointer;
+  box-shadow: 5px 5px 5px rgba(127, 255, 212, 0.274);
 }

@@ -1,6 +1,4 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
-import SignIn from "../SignIn/SignIn";
 
 import UserHeader from "./Header/UserHeader";
 // import classes from "./UserPage.module.css";

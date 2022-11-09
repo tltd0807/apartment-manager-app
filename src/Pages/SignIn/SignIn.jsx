@@ -40,7 +40,7 @@ const SignIn = () => {
       })
         .then((res) => {
           // login thanfh cong
-          console.log(res.roleId);
+          console.log(res);
           authCtx.login(res.token);
           setSigninFail(false);
           if (res.roleId === 1) {

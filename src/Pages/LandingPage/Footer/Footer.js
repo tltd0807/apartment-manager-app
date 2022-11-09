@@ -1,12 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import Button from "../../../Components/Layout/Button/Button";
 import classes from "./Footer.module.css";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <section className={classes["footer-section"]}>
         <h2>Mua căn hộ ngay hôm nay</h2>
-        <Button>Đăng nhập</Button>
+        <Button onClick={() => navigate("/signin")}>Đăng nhập</Button>
       </section>
       <footer>
         <div className={classes["footer-left"]}>

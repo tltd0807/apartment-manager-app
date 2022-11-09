@@ -7,6 +7,9 @@
   border-radius: 10px;
   overflow: hidden;
 }
+.container:hover {
+  cursor: pointer;
+}
 .apartment-img {
   width: 100%;
 }

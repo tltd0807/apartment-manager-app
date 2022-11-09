@@ -2,21 +2,22 @@ import classes from "./ApartmentItem.module.css";
 
 const ApartmentItem = (props) => {
   // console.log(props.type);
-  const [bedroom, toilet] = props.type.split(" ");
 
   return (
-    <div className={classes.container}>
-      <img className={classes["apartment-img"]} src={props.imgSrc}></img>
+    <div className={classes.container} onClick={props.onClick}>
+      <img
+        className={classes["apartment-img"]}
+        src={props.imgSrc}
+        alt="some image"
+      ></img>
       <header className={classes.title}>{props.name}</header>
       <div className={classes["brief-detail"]}>
         <div className={classes["number-room"]}>
           <div>
-            {/* <span>{bedroom[0]} </span> phòng, */}
             <span>{props.type}</span>
           </div>
-          <div>{/* <span>{toilet[0]} </span> nhà vệ sinh */}</div>
         </div>
-        <div className={classes.price}>{props.price}tr/tháng</div>
+        <div className={classes.price}>{props.price}k/tháng</div>
       </div>
     </div>
   );

@@ -10,14 +10,15 @@ import { useContext } from "react";
 import AuthContext from "./store/auth-context";
 function App() {
   const authCtx = useContext(AuthContext);
-  console.log(authCtx.isLoggedIn);
+  // console.log(authCtx.isLoggedIn);
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/apartment" element={<ApartmentPage />} />
-      <Route path="/admin" element={<AdminPage />} />
-      <Route path="/user" element={<UserPage />} />
+      {authCtx.isLoggedIn && <Route path="/admin" element={<AdminPage />} />}
+      {authCtx.isLoggedIn && <Route path="/user" element={<UserPage />} />}
+
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

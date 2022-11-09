@@ -6,12 +6,12 @@ import Search from "../Search/Search";
 import ApartmentItem from "./ApartmentItem/ApartmentItem";
 import { Api } from "../../../data/EndPoint";
 import classes from "./ApartmentList.module.css";
-
+import { useNavigate } from "react-router-dom";
 const ApartmentList = (props) => {
   const [apartmentArr, setApartmentArr] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isAll, setIsAll] = useState(true);
-
+  const navigate = useNavigate();
   // ngăn cho getData re-create khi ApartmentList re-eveluating
   const getData = useCallback(async (pageNumber) => {
     try {
@@ -30,7 +30,9 @@ const ApartmentList = (props) => {
       console.log("ERROR", e);
     }
   }, []);
-
+  const toDetailApartment = (id) => {
+    navigate("/apartment", { state: { id: id } });
+  };
   const getDataBtType = useCallback(async (typeId) => {
     if (typeId === 0) {
       // setIsAll(true);
@@ -72,6 +74,7 @@ const ApartmentList = (props) => {
                 name={apartment.name}
                 price={apartment.price}
                 type={apartment.type}
+                onClick={() => toDetailApartment(apartment.id)}
               />
             ))}
         </div>

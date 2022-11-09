@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+.custom-dot {
+  /* background-color: aqua; */
+  display: flex !important;
+  justify-content: space-around;
+  padding: 0;
+  list-style: none;
+}
+
+.custom-dot li {
+  opacity: 0.5;
+}
+.custom-dot li a img {
+  width: 50px;
+  height: 50px;
+}
+.custom-dot li.slick-active {
+  opacity: 1;
+}
