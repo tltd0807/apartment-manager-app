@@ -40,13 +40,17 @@ const SignIn = () => {
       })
         .then((res) => {
           // login thanfh cong
-          console.log(res);
+          // console.log(res);
           authCtx.login(res.token);
           setSigninFail(false);
           if (res.roleId === 1) {
-            navigate("/user");
+            navigate("/user", {
+              state: { username: res.username, avatarUrl: res.avatarUrl },
+            });
           } else {
-            navigate("/admin");
+            navigate("/admin", {
+              state: { username: res.username, avatarUrl: res.avatarUrl },
+            });
           }
         })
         .catch((err) => {

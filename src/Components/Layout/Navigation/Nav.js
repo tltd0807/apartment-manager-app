@@ -5,6 +5,7 @@ import Button from "../Button/Button";
 import classes from "./Nav.module.css";
 
 const Nav = (props) => {
+  const { onClick, activeTab, userInfo } = props;
   const navigate = useNavigate();
 
   const authCtx = useContext(AuthContext);
@@ -12,15 +13,41 @@ const Nav = (props) => {
     authCtx.logout();
     navigate("/");
   };
+
   return (
     <nav className={classes["admin-nav"]}>
-      <div className={classes["nav-item"]} tabIndex={0}>
+      <div className={classes.info}>
+        <img src={userInfo.avatarUrl} alt="ava" className={classes.ava} />
+        <p>{userInfo.username}</p>
+      </div>
+      <div
+        className={`${classes[`${activeTab === 1 ? "active" : ""}`]} ${
+          classes["nav-item"]
+        }
+        }`}
+        tabIndex={0}
+        onClick={() => onClick(1)}
+      >
         Apartment List
       </div>
-      <div className={classes["nav-item"]} tabIndex={0}>
+      <div
+        className={`${classes[`${activeTab === 2 ? "active" : ""}`]} ${
+          classes["nav-item"]
+        }
+        }`}
+        tabIndex={0}
+        onClick={() => onClick(2)}
+      >
         Request List
       </div>
-      <div className={classes["nav-item"]} tabIndex={0}>
+      <div
+        className={`${classes[`${activeTab === 3 ? "active" : ""}`]} ${
+          classes["nav-item"]
+        }
+        }`}
+        tabIndex={0}
+        onClick={() => onClick(3)}
+      >
         User List
       </div>
       <Button onClick={LogoutHandler}>Đăng xuất</Button>

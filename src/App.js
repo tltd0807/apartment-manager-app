@@ -18,6 +18,9 @@ function App() {
       <Route path="/apartment" element={<ApartmentPage />} />
       {authCtx.isLoggedIn && <Route path="/admin" element={<AdminPage />} />}
       {authCtx.isLoggedIn && <Route path="/user" element={<UserPage />} />}
+      {authCtx.isLoggedIn && (
+        <Route path="/user/userlist" element={<UserPage />} />
+      )}
 
       <Route path="*" element={<NotFound />} />
     </Routes>

@@ -13,13 +13,17 @@
   margin: 0;
 }
 .header-right {
-  width: 50vw;
+  width: 55vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 .header-item:hover {
   cursor: pointer;
+  color: aqua;
+  text-decoration: underline;
+}
+.active {
   color: aqua;
   text-decoration: underline;
 }
