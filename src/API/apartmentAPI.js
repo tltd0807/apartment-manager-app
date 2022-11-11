@@ -4,7 +4,14 @@ export const getApartmentById = async (id) => {
   const res = await axios.get(
     `https://buildingmanager-api.herokuapp.com/api/System/items/${id}`
   );
-  // console.log(res.data);
+  return res.data;
+};
+
+export const getAminApartmentById = async (id, token) => {
+  const res = await axios.get(
+    `https://buildingmanager-api.herokuapp.com/api/System/items/${id}`,
+    { headers: { Authorization: `${token}` } }
+  );
   return res.data;
 };
 
@@ -14,7 +21,6 @@ export const getAllApartment = async (token) => {
     `https://buildingmanager-api.herokuapp.com/api/Admin/items?PageSize=100 `,
     { headers: { Authorization: `${token}` } }
   );
-  // console.log(res.data);
   return res.data;
 };
 
@@ -24,7 +30,6 @@ export const getApartmentUnpaid = async (token) => {
     `https://buildingmanager-api.herokuapp.com/api/Admin/unpaied-items?PageSize=100 `,
     { headers: { Authorization: `${token}` } }
   );
-  // console.log(res.data);
   return res.data;
 };
 
