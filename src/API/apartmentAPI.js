@@ -4,6 +4,6 @@ export const getApartmentById = async (id) => {
   const res = await axios.get(
     `https://buildingmanager-api.herokuapp.com/api/System/items/${id}`
   );
-  console.log(res.data);
+  // console.log(res.data);
   return res.data;
 };

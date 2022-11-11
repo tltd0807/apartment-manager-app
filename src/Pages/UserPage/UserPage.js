@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import ApartmentList from "../LandingPage/ApartmentList/ApartmentList";
 
 import UserHeader from "./Header/UserHeader";
@@ -9,10 +10,14 @@ const UserPage = (props) => {
   const [isPay, setIsPay] = useState(false);
   const [isMoreMem, setMoreMem] = useState(false);
   const [isList, setIsList] = useState(false);
+  const [isInfo, setIsInfo] = useState(false);
+  const { state } = useLocation();
+
   return (
     <section>
       <UserHeader
         pageSate={{
+          isInfo: isInfo,
           isList: isList,
           isRent: isRent,
           isPay: isPay,
@@ -21,7 +26,9 @@ const UserPage = (props) => {
           setIsRent: setIsRent,
           setIsPay: setIsPay,
           setMoreMem: setMoreMem,
+          setIsInfo: setIsInfo,
         }}
+        userInfo={state}
       />
       {isList && (
         <div>
@@ -29,6 +36,10 @@ const UserPage = (props) => {
           <ApartmentList />
         </div>
       )}
+      {isInfo && <div>Info here</div>}
+      {isRent && <div>isRent here</div>}
+      {isPay && <div>isPay here</div>}
+      {isMoreMem && <div>isMoreMem here</div>}
     </section>
   );
 };

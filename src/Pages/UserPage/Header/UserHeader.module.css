@@ -10,7 +10,9 @@
 .welcome-title {
   padding: 0;
   color: white;
+  display: flex;
   margin: 0;
+  width: fit-content;
 }
 .header-right {
   width: 55vw;
@@ -26,4 +28,16 @@
 .active {
   color: aqua;
   text-decoration: underline;
+}
+.welcome-title:hover {
+  cursor: pointer;
+}
+.ava {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 5px;
+}
+.welcome-title p {
+  font-size: 20px;
 }
