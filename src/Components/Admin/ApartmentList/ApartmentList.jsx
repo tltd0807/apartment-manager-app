@@ -2,10 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { getAllApartment } from "../../../API/apartmentAPI";
 import AuthContext from "../../../store/auth-context";
 import ApartmentItem from "./ApartmentItem/ApartmentItem";
+import ReactPaginate from "react-paginate";
+import PaginatedItems from "./PaginatedItems/PaginatedItems";
+
 const ApartmentList = () => {
   const authContext = useContext(AuthContext);
   const [apartmentList, setApartmentList] = useState([]);
-  const nextPage = () => {};
+
   useEffect(() => {
     getAllApartment(authContext.token)
       .then((res) => {
@@ -20,13 +23,10 @@ const ApartmentList = () => {
     <section>
       <h1>ApartmentList</h1>
       <div>
-        <div>
-          <button onClick={nextPage}> &lt;</button>
-          <button onClick={nextPage}> &gt;</button>
-        </div>
-        {apartmentList.map((apartmentItemData) => (
+        {/* {apartmentList.map((apartmentItemData) => (
           <ApartmentItem data={apartmentItemData} key={apartmentItemData.id} />
-        ))}
+        ))} */}
+        <PaginatedItems itemsPerPage={6} />
       </div>
     </section>
   );

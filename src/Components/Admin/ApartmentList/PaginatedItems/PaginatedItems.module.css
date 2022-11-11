@@ -1,0 +1,30 @@
+.container {
+  width: fit-content;
+  height: 415px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.num,
+.list-container a {
+  color: rebeccapurple;
+  padding: 5px;
+}
+.list-container {
+  list-style: none;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0 !important;
+  border: 1px solid rebeccapurple;
+  padding: 10px 20px;
+}
+.list-container .num,
+.list-container a {
+  cursor: pointer;
+}
+
+.active {
+  background: rgb(212, 193, 231);
+  color: white;
+}
