@@ -5,7 +5,7 @@ import Button from "../Button/Button";
 import classes from "./Nav.module.css";
 
 const Nav = (props) => {
-  const { onClick, activeTab, userInfo } = props;
+  const { onClickFocus, activeTab, userInfo } = props;
   const navigate = useNavigate();
 
   const authCtx = useContext(AuthContext);
@@ -13,7 +13,7 @@ const Nav = (props) => {
     authCtx.logout();
     navigate("/");
   };
-
+  console.log(activeTab);
   return (
     <nav className={classes["admin-nav"]}>
       <div className={classes.info}>
@@ -26,7 +26,7 @@ const Nav = (props) => {
         }
         }`}
         tabIndex={0}
-        onClick={() => onClick(1)}
+        onClick={() => onClickFocus(1)}
       >
         Apartment List
       </div>
@@ -36,7 +36,7 @@ const Nav = (props) => {
         }
         }`}
         tabIndex={0}
-        onClick={() => onClick(2)}
+        onClick={() => onClickFocus(2)}
       >
         Request List
       </div>
@@ -46,7 +46,7 @@ const Nav = (props) => {
         }
         }`}
         tabIndex={0}
-        onClick={() => onClick(3)}
+        onClick={() => onClickFocus(3)}
       >
         User List
       </div>

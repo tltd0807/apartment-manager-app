@@ -14,11 +14,13 @@
   margin-bottom: 5px;
 }
 .nav-item:hover,
-.nav-item:focus {
+.nav-item:focus,
+.active {
   cursor: pointer;
   font-weight: bold;
   background: hsla(258, 82%, 72%, 0.342);
 }
+
 .info {
   display: flex;
 }

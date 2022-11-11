@@ -1,0 +1,21 @@
+.item-container {
+  display: flex;
+  justify-content: space-around;
+  width: 30vw;
+  border: 1px solid #fafafa;
+  padding: 20px 40px;
+}
+.not-rented {
+  color: aqua;
+}
+.rented {
+  color: red;
+}
+.item-container div,
+.item-container h4,
+.item-container p {
+  margin: 0;
+}
+.item-container:nth-of-type(2n) {
+  background-color: #fafafa97;
+}
