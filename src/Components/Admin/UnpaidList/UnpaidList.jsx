@@ -1,4 +1,5 @@
 import React from "react";
+import PaginatedItems from "./PaginatedItems/PaginatedItems";
 import UnpaidItem from "./UnpaidItem/UnpaidItem";
 import classes from "./UnpaidList.module.css";
 
@@ -16,7 +17,7 @@ const UnpaidList = () => {
     <div>
       <h1>UnpaidList</h1>
       <div>
-        <UnpaidItem data={data} />
+        <PaginatedItems itemsPerPage={4} />
       </div>
     </div>
   );
