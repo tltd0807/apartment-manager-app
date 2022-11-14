@@ -5,8 +5,6 @@ import AuthContext from "../../../../store/auth-context";
 import ApartmentItem from "../ApartmentItem/ApartmentItem";
 import classes from "./PaginatedItems.module.css";
 function PaginatedItems({ itemsPerPage }) {
-  // Here we use item offsets; we could also use page offsets
-  // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0);
   const [apartmentList, setApartmentList] = useState([]);
   const authContext = useContext(AuthContext);
@@ -21,14 +19,10 @@ function PaginatedItems({ itemsPerPage }) {
       });
   }, [authContext.token]);
 
-  // Simulate fetching items from another resources.
-  // (This could be items from props; or items loaded in a local state
-  // from an API endpoint with useEffect and useState)
   const endOffset = itemOffset + itemsPerPage;
   const currentItems = apartmentList.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(apartmentList.length / itemsPerPage);
 
-  // Invoke when user click to request another page.
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % apartmentList.length;
 
@@ -36,10 +30,17 @@ function PaginatedItems({ itemsPerPage }) {
   };
 
   return (
-    <div className={classes.container}>
-      {currentItems.map((apartmentItemData) => (
-        <ApartmentItem data={apartmentItemData} key={apartmentItemData.id} />
-      ))}
+    <div>
+      <div className={classes.container}>
+        <div className={classes.list}>
+          {currentItems.map((apartmentItemData) => (
+            <ApartmentItem
+              data={apartmentItemData}
+              key={apartmentItemData.id}
+            />
+          ))}
+        </div>
+      </div>
       <ReactPaginate
         breakLabel="..."
         nextLabel="next > "
@@ -56,3 +57,12 @@ function PaginatedItems({ itemsPerPage }) {
   );
 }
 export default PaginatedItems;
+{
+  /* <div className={classes["table-header"]}>
+        <div>Field A</div>
+        <div>Field B</div>
+        <div>Field C</div>
+        <div>Field D</div>
+        <div>Field E</div>
+      </div> */
+}

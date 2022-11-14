@@ -1,9 +1,15 @@
 .container {
-  width: fit-content;
-  height: 415px;
+  width: 576px;
+  height: 500px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  background-color: rgba(160, 72, 242, 0.992);
+}
+.list {
+  width: 576px;
+
+  height: 500px;
 }
 .num,
 .list-container a {
@@ -13,11 +19,12 @@
 .list-container {
   list-style: none;
   display: flex;
-  width: 100%;
+  width: 576px;
   justify-content: space-between;
   padding: 0 !important;
-  border: 1px solid rebeccapurple;
+  /* border: 1px solid rebeccapurple; */
   padding: 10px 20px;
+  background: #fff;
 }
 .list-container .num,
 .list-container a {
@@ -27,4 +34,24 @@
 .active {
   background: rgb(212, 193, 231);
   color: white;
+}
+.table-header {
+  width: 576px;
+
+  display: flex;
+}
+.table-header div:nth-of-type(1) {
+  margin-left: 50px;
+}
+.table-header div:nth-of-type(2) {
+  margin-left: 60px;
+}
+.table-header div:nth-of-type(3) {
+  margin-left: 70px;
+}
+.table-header div:nth-of-type(4) {
+  margin-left: 40px;
+}
+.table-header div:nth-of-type(5) {
+  margin-left: 40px;
 }

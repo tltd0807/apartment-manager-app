@@ -1,0 +1,14 @@
+.item-container {
+  display: flex;
+  justify-content: space-around;
+  width: 900px;
+
+  border: 1px solid #fafafa;
+  padding: 20px 40px;
+}
+.not-have {
+  color: aqua;
+}
+.had {
+  color: red;
+}

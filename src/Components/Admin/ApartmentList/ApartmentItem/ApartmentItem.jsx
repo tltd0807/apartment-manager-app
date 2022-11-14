@@ -11,10 +11,19 @@ const ApartmentItem = (props) => {
     );
   return (
     <div className={classes["item-container"]}>
-      <h4>{name}</h4>
-      <p>{price} k/tháng</p>
-      <p>{type}</p>
-      {statusContent}
+      <p>
+        <strong>Tên:</strong> {name}
+      </p>
+      <p>
+        <strong>Giá:</strong> {price} k/tháng
+      </p>
+      <p>
+        <strong>Loại:</strong> {type}
+      </p>
+      <p>
+        <strong>Tình </strong>trạng: {statusContent}
+      </p>
+
       <button>Sửa thông tin</button>
     </div>
   );

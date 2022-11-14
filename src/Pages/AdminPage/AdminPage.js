@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import ApartmentList from "../../Components/Admin/ApartmentList/ApartmentList";
+import UnrentList from "../../Components/Admin/ApartmentList/UnrentList/UnrentList";
 import RequestList from "../../Components/Admin/RequestList/RequestList";
-import UserList from "../../Components/Admin/UserList/UserList";
+import UnpaidList from "../../Components/Admin/UnpaidList/UnpaidList";
 import Nav from "../../Components/Layout/Navigation/Nav";
 import classes from "./AdminPage.module.css";
 
@@ -28,7 +29,8 @@ const AdminPage = (props) => {
         {activeTab === 0 && <h1>Welcome {state.username}</h1>}
         {activeTab === 1 && <ApartmentList />}
         {activeTab === 2 && <RequestList />}
-        {activeTab === 3 && <UserList />}
+        {activeTab === 3 && <UnrentList />}
+        {activeTab === 4 && <UnpaidList />}
       </section>
     </main>
   );

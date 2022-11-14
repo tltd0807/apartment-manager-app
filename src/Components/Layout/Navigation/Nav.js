@@ -48,8 +48,19 @@ const Nav = (props) => {
         tabIndex={0}
         onClick={() => onClickFocus(3)}
       >
-        User List
+        Unrent List
       </div>
+      <div
+        className={`${classes[`${activeTab === 4 ? "active" : ""}`]} ${
+          classes["nav-item"]
+        }
+        }`}
+        tabIndex={0}
+        onClick={() => onClickFocus(4)}
+      >
+        Unpaid List
+      </div>
+
       <Button onClick={LogoutHandler}>Đăng xuất</Button>
     </nav>
   );

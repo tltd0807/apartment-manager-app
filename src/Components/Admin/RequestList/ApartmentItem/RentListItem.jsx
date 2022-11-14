@@ -14,12 +14,25 @@ const RentListItem = (props) => {
     );
   return (
     <div className={classes["item-container"]}>
-      <h4 className={classes.name}>{fullName}</h4>
-      <p className={classes.date}>{createDate}</p>
-      <p className={classes.cccd}>{cccd}</p>
-      <p className={classes.numberOfParent}>{numberOfParent}</p>
-
-      {statusContent}
+      <p className={classes.name}>
+        <strong>Tên:</strong> {fullName}
+      </p>
+      <p className={classes.date}>
+        <strong>Ngày: </strong>
+        {createDate.split("T")[0]}
+      </p>
+      <p className={classes.cccd}>
+        <strong>CCCD: </strong>
+        {cccd}
+      </p>
+      <p className={classes.numberOfParent}>
+        <strong>Number of parent: </strong>
+        {numberOfParent}
+      </p>
+      <p>
+        <strong>Trạng thái: </strong>
+        {statusContent}
+      </p>
     </div>
   );
 };
