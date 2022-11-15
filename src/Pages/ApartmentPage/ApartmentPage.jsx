@@ -61,7 +61,12 @@ const ApartmentPage = () => {
         },
         authCtx.token
       )
-        .then((res) => console.log(res))
+        .then((res) => {
+          alert(res);
+          fullNameInput.current.value = "";
+          cccdInput.current.value = "";
+          numberOfParentInput.current.value = 0;
+        })
         .catch((err) => console.log(err.response.data.errors));
     }
   };
