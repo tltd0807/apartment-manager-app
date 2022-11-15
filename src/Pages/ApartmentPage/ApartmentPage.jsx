@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import { getApartmentById } from "../../API/apartmentAPI";
+import { sentRentRequest } from "../../API/userAPI";
 
 import classes from "./ApartmentPage.module.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useLocation, useNavigate } from "react-router-dom";
+import AuthContext from "../../store/auth-context";
 const ApartmentPage = () => {
   const [apartment, setApartment] = useState({
     location: "",
@@ -15,6 +17,11 @@ const ApartmentPage = () => {
     pictureUrl: null,
     description: "",
   });
+  const authCtx = useContext(AuthContext);
+  const [isLogIn, setIsLogIn] = useState(authCtx.isLoggedIn);
+  const fullNameInput = useRef();
+  const cccdInput = useRef();
+  const numberOfParentInput = useRef();
   const { state } = useLocation();
   const navigate = useNavigate();
   const { id } = state;
@@ -25,6 +32,39 @@ const ApartmentPage = () => {
       })
       .catch((e) => console.log(e));
   }, []);
+
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    if (!isLogIn) {
+      alert("Vui lòng đăng nhập để yêu cầu thuê");
+      navigate("/signin");
+    } else {
+      // Validate before sent
+      // const data = {
+      //   FullName: fullNameInput.current.value,
+      //   CCCD: cccdInput.current.value,
+      //   NumberOfParent: numberOfParentInput.current.value,
+      //   ItemId: id,
+      // };
+      console.log({
+        FullName: fullNameInput.current.value,
+        CCCD: cccdInput.current.value,
+        NumberOfParent: numberOfParentInput.current.value,
+        ItemId: id,
+      });
+      sentRentRequest(
+        {
+          FullName: fullNameInput.current.value,
+          CCCD: cccdInput.current.value,
+          // NumberOfParent: numberOfParentInput.current.value,
+          // ItemId: id,
+        },
+        authCtx.token
+      )
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err.response.data.errors));
+    }
+  };
 
   const settings = {
     customPaging: function (i) {
@@ -87,8 +127,39 @@ const ApartmentPage = () => {
           <p className={classes["apartment-price"]}>
             Chỉ với {apartment.price}
           </p>
+          {/* form here */}
+          <form className={classes["rent-form"]} onSubmit={onSubmitHandler}>
+            <div>
+              <label htmlFor="fullName">Họ tên:</label>
+              <input
+                type="text"
+                id="fullName"
+                placeholder="Vui lòng điền Họ và tên"
+                ref={fullNameInput}
+              />
+            </div>
+            <div>
+              <label htmlFor="cccd">CCCD: </label>
+              <input
+                type="text"
+                id="cccd"
+                placeholder="Vui lòng điền số Căn cước"
+                ref={cccdInput}
+              />
+            </div>
+            <div>
+              <label htmlFor="numberOfParent">Số người: </label>
+              <input
+                type="number"
+                id="numberOfParent"
+                placeholder="Vui lòng điền số người ở"
+                ref={numberOfParentInput}
+              />
+            </div>
+            <button className={classes["sent-btn"]}>Gửi</button>
+          </form>
           <button className={classes["back-btn"]} onClick={() => navigate(-1)}>
-            Back
+            Trở về
           </button>
         </div>
       </div>

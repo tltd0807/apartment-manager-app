@@ -16,7 +16,7 @@ const ApartmentList = (props) => {
   const getData = useCallback(async (pageNumber) => {
     try {
       const res = await axios.get(Api.getItems + pageNumber);
-      console.log(res.headers.pagination);
+      // console.log(res.headers.pagination);
       if (pageNumber === 1) {
         setApartmentArr(res["data"]["data"]);
       } else {

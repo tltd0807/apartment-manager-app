@@ -9,7 +9,7 @@ const UserPage = (props) => {
   const [isRent, setIsRent] = useState(false);
   const [isPay, setIsPay] = useState(false);
   const [isMoreMem, setMoreMem] = useState(false);
-  const [isList, setIsList] = useState(false);
+  const [isList, setIsList] = useState(true);
   const [isInfo, setIsInfo] = useState(false);
   const { state } = useLocation();
 

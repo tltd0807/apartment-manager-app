@@ -8,3 +8,12 @@ export const infoUser = async (token) => {
   return res.data;
 };
 // infoUser(res.token).then((res) => console.log(res));
+
+export const sentRentRequest = async (data, token) => {
+  const res = await axios.post(
+    `https://buildingmanager-api.herokuapp.com/api/Member/rent-request`,
+    data,
+    { headers: { Authorization: `${token}` } }
+  );
+  return res.data;
+};

@@ -1,7 +1,6 @@
 .container {
   width: 100vw;
   height: 100vh;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,7 +49,31 @@
   border: none;
   background-color: aquamarine;
 }
-.back-btn:hover {
+.back-btn:hover,
+.sent-btn:hover {
   cursor: pointer;
   box-shadow: 5px 5px 5px rgba(127, 255, 212, 0.274);
+}
+.sent-btn {
+  padding: 10px 20px;
+  border-radius: 7px;
+  outline: none;
+  border: none;
+  background-color: aquamarine;
+}
+.rent-form {
+  width: 100%;
+  margin-bottom: 5px;
+}
+#fullName::placeholder {
+}
+.rent-form div {
+  width: 100%;
+}
+.rent-form div label {
+  display: inline-block;
+  width: 72px;
+}
+.rent-form div input {
+  width: 70%;
 }
