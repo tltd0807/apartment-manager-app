@@ -13,7 +13,12 @@ export const sentRentRequest = async (data, token) => {
   const res = await axios.post(
     `https://buildingmanager-api.herokuapp.com/api/Member/rent-request`,
     data,
-    { headers: { Authorization: `${token}` } }
+    {
+      headers: {
+        Authorization: `${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    }
   );
   return res.data;
 };

@@ -56,8 +56,8 @@ const ApartmentPage = () => {
         {
           FullName: fullNameInput.current.value,
           CCCD: cccdInput.current.value,
-          // NumberOfParent: numberOfParentInput.current.value,
-          // ItemId: id,
+          NumberOfParent: numberOfParentInput.current.value,
+          ItemId: id,
         },
         authCtx.token
       )
