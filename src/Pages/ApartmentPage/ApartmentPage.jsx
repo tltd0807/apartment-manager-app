@@ -46,12 +46,17 @@ const ApartmentPage = () => {
       //   NumberOfParent: numberOfParentInput.current.value,
       //   ItemId: id,
       // };
-      console.log({
-        FullName: fullNameInput.current.value,
-        CCCD: cccdInput.current.value,
-        NumberOfParent: numberOfParentInput.current.value,
-        ItemId: id,
-      });
+      if (cccdInput.current.value < 9) {
+        alert("Vui lòng nhập cccd trên 9 số");
+        return;
+      } else if (numberOfParentInput.current.value <= 0) {
+        alert("Vui lòng nhập số người ở dương");
+        return;
+      } else if (fullNameInput.current.value == "") {
+        alert("Vui lòng nhập tên");
+        return;
+      }
+      //
       sentRentRequest(
         {
           FullName: fullNameInput.current.value,
