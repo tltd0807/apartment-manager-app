@@ -35,17 +35,11 @@ const ApartmentPage = () => {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
+    console.log(authCtx);
     if (!isLogIn) {
       alert("Vui lòng đăng nhập để yêu cầu thuê");
       navigate("/signin");
     } else {
-      // Validate before sent
-      // const data = {
-      //   FullName: fullNameInput.current.value,
-      //   CCCD: cccdInput.current.value,
-      //   NumberOfParent: numberOfParentInput.current.value,
-      //   ItemId: id,
-      // };
       if (cccdInput.current.value < 9) {
         alert("Vui lòng nhập cccd trên 9 số");
         return;
@@ -67,7 +61,8 @@ const ApartmentPage = () => {
         authCtx.token
       )
         .then((res) => {
-          alert(res);
+          console.log(res);
+          alert(res.message);
           fullNameInput.current.value = "";
           cccdInput.current.value = "";
           numberOfParentInput.current.value = 0;
