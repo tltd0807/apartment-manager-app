@@ -9,11 +9,10 @@ const UserHeader = (props) => {
   const { userInfo } = props;
 
   const {
-    isRent,
     isPay,
     isMoreMem,
     isList,
-    setIsRent,
+
     setIsPay,
     setMoreMem,
     setIsList,
@@ -24,31 +23,20 @@ const UserHeader = (props) => {
       case 0: {
         setIsInfo(true);
         setIsList(false);
-        setIsRent(false);
         setIsPay(false);
         setMoreMem(false);
         break;
       }
       case 1: {
         setIsList(true);
-        setIsRent(false);
         setIsPay(false);
         setMoreMem(false);
         setIsInfo(false);
 
         break;
       }
-      case 2: {
-        setIsList(false);
-        setIsRent(true);
-        setIsPay(false);
-        setIsInfo(false);
-        setMoreMem(false);
-        break;
-      }
       case 3: {
         setIsList(false);
-        setIsRent(false);
         setMoreMem(true);
         setIsInfo(false);
         setIsPay(false);
@@ -56,7 +44,6 @@ const UserHeader = (props) => {
       }
       case 4: {
         setIsList(false);
-        setIsRent(false);
         setMoreMem(false);
         setIsInfo(false);
         setIsPay(true);
@@ -89,12 +76,6 @@ const UserHeader = (props) => {
           onClick={() => onClickHandler(1)}
         >
           Danh sách căn hộ trống
-        </div>
-        <div
-          className={`${classes["header-item"]} ${isRent && classes.active} `}
-          onClick={() => onClickHandler(2)}
-        >
-          Thuê căn hộ
         </div>
         <div
           className={`${classes["header-item"]} ${

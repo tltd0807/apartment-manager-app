@@ -4,7 +4,7 @@
 .list-container {
   max-width: 100vw;
   position: relative;
-  background-color: hsla(258, 27%, 26%, 0.195);
+  background-color: hsla(258, 100%, 34%, 0.195);
   z-index: 1;
   padding-top: 10vh;
   display: flex;

@@ -22,3 +22,17 @@ export const sentRentRequest = async (data, token) => {
   );
   return res.data;
 };
+// https://buildingmanager-api.herokuapp.com/api/Member/member
+export const sentMemberRequest = async (data, token) => {
+  const res = await axios.post(
+    `https://buildingmanager-api.herokuapp.com/api/Member/member`,
+    data,
+    {
+      headers: {
+        Authorization: `${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  return res.data;
+};

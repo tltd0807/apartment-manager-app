@@ -1,0 +1,36 @@
+.container {
+  background-color: #16151d;
+  height: 94vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+.header {
+  color: blueviolet;
+}
+.member-form {
+  background-color: rgb(185, 138, 229);
+  padding: 20px 30px;
+  box-shadow: 0 5px 15px rgb(73, 71, 71);
+  border-radius: 7px;
+}
+.member-form label {
+  display: inline-block;
+  width: 110px;
+}
+.member-form div {
+  display: flex;
+  margin: 10px 0;
+}
+.sent-btn {
+  padding: 10px 20px;
+  border-radius: 7px;
+  outline: none;
+  border: none;
+  background-color: aquamarine;
+}
+.sent-btn:hover {
+  cursor: pointer;
+  box-shadow: 5px 5px 5px rgba(127, 255, 212, 0.274);
+}
