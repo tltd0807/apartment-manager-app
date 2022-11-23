@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
+import InfoBill from "../../Components/User/InfoBill/InfoBill";
 import RegisterMember from "../../Components/User/RegisterMember/RegisterMember";
 import ApartmentList from "../LandingPage/ApartmentList/ApartmentList";
 
@@ -34,8 +35,8 @@ const UserPage = (props) => {
           <ApartmentList />
         </div>
       )}
-      {isInfo && <div>Info here</div>}
-      {isPay && <div>isPay here</div>}
+      {isInfo && <div>isInfo here</div>}
+      {isPay && <InfoBill />}
       {isMoreMem && <RegisterMember />}
     </section>
   );

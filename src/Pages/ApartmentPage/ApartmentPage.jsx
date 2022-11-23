@@ -35,7 +35,7 @@ const ApartmentPage = () => {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    console.log(authCtx);
+    // console.log(authCtx);
     if (!isLogIn) {
       alert("Vui lòng đăng nhập để yêu cầu thuê");
       navigate("/signin");

@@ -1,0 +1,28 @@
+.container {
+  color: white;
+}
+.form {
+  width: 180px;
+  margin: auto;
+}
+.bill-id {
+  text-align: center;
+  width: 50px;
+}
+.bill-id::placeholder {
+  text-align: center;
+  width: 100%;
+}
+.sent-btn {
+  margin-top: 5px;
+  padding: 5px 20px;
+  border-radius: 7px;
+  outline: none;
+  border: none;
+  background-color: aquamarine;
+  width: 100%;
+}
+.sent-btn:hover {
+  cursor: pointer;
+  box-shadow: 5px 5px 5px rgba(127, 255, 212, 0.274);
+}

@@ -89,7 +89,7 @@ const UserHeader = (props) => {
           className={`${classes["header-item"]} ${isPay && classes.active} `}
           onClick={() => onClickHandler(4)}
         >
-          Thanh toán hóa đơn
+          Hóa đơn
         </div>
         <Button onClick={LogoutHandler}>Đăng xuất</Button>
       </div>

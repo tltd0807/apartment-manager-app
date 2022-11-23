@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  height: 94vh;
+
+  color: antiquewhite;
+}
+.bill-container {
+  background-color: #16151d;
+  width: 65%;
+  text-align: center;
+}
+.pay-container {
+  background-color: #16151dfc;
+  text-align: center;
+  width: 35%;
+}

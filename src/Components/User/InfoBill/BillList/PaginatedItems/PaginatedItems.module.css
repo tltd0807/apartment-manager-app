@@ -1,0 +1,33 @@
+.item-container {
+  width: 98%;
+  margin: auto;
+  display: flex;
+  background-color: #514d6b67;
+  justify-content: space-between;
+}
+.item-container:nth-of-type(2n) {
+  background-color: #16151dd0;
+  position: relative;
+}
+.sum,
+.paid {
+  color: aqua;
+}
+.list-container {
+  list-style: none;
+  display: flex;
+  width: 65%;
+  position: absolute;
+  top: 400px;
+  justify-content: space-between;
+  padding: 0 !important;
+}
+.list-container a {
+  cursor: pointer;
+}
+.active {
+  color: aqua;
+}
+.pointer {
+  cursor: pointer;
+}
