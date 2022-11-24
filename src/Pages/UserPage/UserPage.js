@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import InfoBill from "../../Components/User/InfoBill/InfoBill";
 import RegisterMember from "../../Components/User/RegisterMember/RegisterMember";
+import Rented from "../../Components/User/Rented/Rented";
 import ApartmentList from "../LandingPage/ApartmentList/ApartmentList";
 
 import UserHeader from "./Header/UserHeader";
@@ -12,6 +13,7 @@ const UserPage = (props) => {
   const [isMoreMem, setMoreMem] = useState(false);
   const [isList, setIsList] = useState(true);
   const [isInfo, setIsInfo] = useState(false);
+  const [isRent, setIsRent] = useState(false);
   const { state } = useLocation();
 
   return (
@@ -22,10 +24,12 @@ const UserPage = (props) => {
           isList: isList,
           isPay: isPay,
           isMoreMem: isMoreMem,
+          isRent: isRent,
           setIsList: setIsList,
           setIsPay: setIsPay,
           setMoreMem: setMoreMem,
           setIsInfo: setIsInfo,
+          setIsRent: setIsRent,
         }}
         userInfo={state}
       />
@@ -38,12 +42,13 @@ const UserPage = (props) => {
       {isInfo && <div>isInfo here</div>}
       {isPay && <InfoBill />}
       {isMoreMem && <RegisterMember />}
+      {isRent && (
+        <div>
+          <Rented />
+        </div>
+      )}
     </section>
   );
 };
 
 export default UserPage;
-
-// 4 Gửi yêu cầu thuê căn hộ
-// 5 Đăng ký thành viên trong căn hộ
-// 6 Thanh toán hóa đơn

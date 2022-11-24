@@ -67,7 +67,7 @@ const ApartmentPage = () => {
           cccdInput.current.value = "";
           numberOfParentInput.current.value = 0;
         })
-        .catch((err) => console.log(err.response.data.errors));
+        .catch((err) => console.log(err));
     }
   };
 

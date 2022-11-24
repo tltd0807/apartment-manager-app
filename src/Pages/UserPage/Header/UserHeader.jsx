@@ -12,11 +12,12 @@ const UserHeader = (props) => {
     isPay,
     isMoreMem,
     isList,
-
+    isRent,
     setIsPay,
     setMoreMem,
     setIsList,
     setIsInfo,
+    setIsRent,
   } = props.pageSate;
   const onClickHandler = (num) => {
     switch (num) {
@@ -25,6 +26,7 @@ const UserHeader = (props) => {
         setIsList(false);
         setIsPay(false);
         setMoreMem(false);
+        setIsRent(false);
         break;
       }
       case 1: {
@@ -32,6 +34,7 @@ const UserHeader = (props) => {
         setIsPay(false);
         setMoreMem(false);
         setIsInfo(false);
+        setIsRent(false);
 
         break;
       }
@@ -39,6 +42,7 @@ const UserHeader = (props) => {
         setIsList(false);
         setMoreMem(true);
         setIsInfo(false);
+        setIsRent(false);
         setIsPay(false);
         break;
       }
@@ -46,7 +50,16 @@ const UserHeader = (props) => {
         setIsList(false);
         setMoreMem(false);
         setIsInfo(false);
+        setIsRent(false);
         setIsPay(true);
+        break;
+      }
+      case 5: {
+        setIsList(false);
+        setMoreMem(false);
+        setIsInfo(false);
+        setIsRent(true);
+        setIsPay(false);
         break;
       }
       default:
@@ -76,6 +89,12 @@ const UserHeader = (props) => {
           onClick={() => onClickHandler(1)}
         >
           Danh sách căn hộ trống
+        </div>
+        <div
+          className={`${classes["header-item"]} ${isRent && classes.active} `}
+          onClick={() => onClickHandler(5)}
+        >
+          Căn hộ đang thuê
         </div>
         <div
           className={`${classes["header-item"]} ${
