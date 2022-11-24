@@ -1,0 +1,35 @@
+.container {
+  height: 94vh;
+  background-color: #16151d;
+  color: antiquewhite;
+  padding: 50px 40px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.user-info {
+  height: fit-content;
+}
+.label {
+  display: inline-block;
+  width: 130px;
+}
+.sent-btn {
+  margin-top: 5px;
+  padding: 5px 20px;
+  border-radius: 7px;
+  outline: none;
+  border: none;
+  background-color: aquamarine;
+  width: fit-content;
+}
+.sent-btn:hover {
+  cursor: pointer;
+  box-shadow: 5px 5px 5px rgba(127, 255, 212, 0.274);
+}
+.input-label {
+  display: block;
+  width: 100px;
+}
+.form input {
+  margin-bottom: 20px;
+}

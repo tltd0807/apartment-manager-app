@@ -63,27 +63,30 @@ const Rented = () => {
   return (
     <div className={classes.container}>
       <div className={classes["item-container"]}>
-        {rented[0].id !== 0 &&
-          rented.map((item) => (
-            <div
-              className={classes.item}
-              key={item.id}
-              onClick={() => setItemID(item.id)}
-            >
-              <p>
-                <strong>Tên căn hộ: </strong>
-                {item.name}
-              </p>
-              <p>
-                <strong>Giá thuê: </strong>
-                {item.price}
-              </p>
-              <p>
-                <strong>Loại căn hộ: </strong>
-                {item.type}
-              </p>
-            </div>
-          ))}
+        <h2 className={classes.none}>Danh sách căn hộ đang thuê</h2>
+        <div>
+          {rented[0].id !== 0 &&
+            rented.map((item) => (
+              <div
+                className={classes.item}
+                key={item.id}
+                onClick={() => setItemID(item.id)}
+              >
+                <p>
+                  <strong>Tên căn hộ: </strong>
+                  {item.name}
+                </p>
+                <p>
+                  <strong>Giá thuê: </strong>
+                  {item.price}
+                </p>
+                <p>
+                  <strong>Loại căn hộ: </strong>
+                  {item.type}
+                </p>
+              </div>
+            ))}
+        </div>
         {rented[0].id === 0 && (
           <p className={classes.none}>Bạn chưa có thuê căn hộ nào</p>
         )}

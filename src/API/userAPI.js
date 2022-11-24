@@ -9,7 +9,7 @@ export const infoUser = async (token) => {
 };
 // infoUser(res.token).then((res) => console.log(res));
 export const editInfoUser = async (data, token) => {
-  const res = await axios.post(
+  const res = await axios.put(
     `https://buildingmanager-api.herokuapp.com/api/Member/edit-profile`,
     data,
     {
