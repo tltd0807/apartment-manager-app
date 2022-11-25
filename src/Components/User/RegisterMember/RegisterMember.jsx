@@ -1,7 +1,9 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 import classes from "./RegisterMember.module.css";
 const RegisterMember = () => {
+  const [img, setImg] = useState();
+
   const nameRef = useRef();
   const avaRef = useRef();
   const birtDayRef = useRef();
@@ -16,8 +18,7 @@ const RegisterMember = () => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     // console.log(genderRef.current.value === ""); nếu select trống thì value =''
-    // console.log(typeof avaRef.current.value);
-    // console.log(birtDayRef.current.value);
+    // sử dụng form data thay vì đây
     const newMem = {
       FullName: nameRef.current.value,
       AvatarUrl: avaRef.current.value,
@@ -31,7 +32,6 @@ const RegisterMember = () => {
       "PlaceOfOrigin.Street": streetRef.current.value,
       "PlaceOfOrigin.Details": detailRef.current.value,
     };
-    console.log(newMem);
   };
   return (
     <div className={classes.container}>

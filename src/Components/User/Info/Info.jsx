@@ -9,6 +9,8 @@ const Info = ({ isInfo }) => {
     email: "",
     phoneNumber: "",
   });
+  const [img, setImg] = useState();
+
   const avatarUrlRef = useRef();
   const phoneNumberRef = useRef();
   const autCtx = useContext(AuthContext);
@@ -21,8 +23,6 @@ const Info = ({ isInfo }) => {
   }, [isInfo]);
   const editUserInfo = (e) => {
     e.preventDefault();
-    // console.log(avatarUrlRef.current.value);
-    // console.log(phoneNumberRef.current.value);
     if (!phoneNumberRef.current.value && !phoneNumberRef.current.value) {
       window.alert("Vui lòng nhập thông tin");
       return;
@@ -33,13 +33,11 @@ const Info = ({ isInfo }) => {
         return;
       }
     }
-    editInfoUser(
-      {
-        Avatar: avatarUrlRef.current.value,
-        PhoneNumber: phoneNumberRef.current.value,
-      },
-      autCtx.token
-    )
+    const formData = new FormData();
+    formData.append("Avatar", img);
+    formData.append("PhoneNumber", phoneNumberRef.current.value);
+
+    editInfoUser(formData, autCtx.token)
       .then((res) => {
         window.alert("Thay đổi thành công. Vui lòng F5 để xem kết quả");
       })
@@ -82,7 +80,12 @@ const Info = ({ isInfo }) => {
           <label htmlFor="avatar" className={classes["input-label"]}>
             Avatar{" "}
           </label>
-          <input type="file" id="avatar" ref={avatarUrlRef} />
+          <input
+            type="file"
+            id="avatar"
+            ref={avatarUrlRef}
+            onChange={(e) => setImg(e.target.files[0])}
+          />
         </div>
         <div>
           <label htmlFor="sdt" className={classes["input-label"]}>
