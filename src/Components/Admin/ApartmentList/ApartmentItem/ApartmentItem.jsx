@@ -24,7 +24,7 @@ const ApartmentItem = (props) => {
         <strong>Tình </strong>trạng: {statusContent}
       </p>
 
-      <button>Sửa thông tin</button>
+      <button onClick={() => props.setItemID(id)}>Thông tin</button>
     </div>
   );
 };

@@ -77,7 +77,7 @@ const Info = ({ isInfo }) => {
         </div>
       </div>
       <form className={classes.form} onSubmit={editUserInfo}>
-        <h2>Thay đổi thông</h2>
+        <h2>Thay đổi thông tin</h2>
         <div>
           <label htmlFor="avatar" className={classes["input-label"]}>
             Avatar{" "}

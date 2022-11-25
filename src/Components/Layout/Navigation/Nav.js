@@ -13,7 +13,7 @@ const Nav = (props) => {
     authCtx.logout();
     navigate("/");
   };
-  console.log(activeTab);
+  // console.log(activeTab);
   return (
     <nav className={classes["admin-nav"]}>
       <div className={classes.info}>

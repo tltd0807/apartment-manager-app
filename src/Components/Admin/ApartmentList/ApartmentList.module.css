@@ -1,6 +1,52 @@
+.body {
+  display: flex;
+  /* justify-content: space-evenly; */
+}
 .container {
   width: 576px;
 }
+.info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.info-header {
+  width: fit-content;
+}
 .container h1 {
   text-align: center;
+}
+.img-container {
+  display: flex;
+  justify-content: space-between;
+}
+.form {
+  width: 400px;
+  /* background-color: aqua; */
+  display: flex;
+  flex-direction: column;
+}
+.input-label {
+  display: block;
+  /* width: 100px; */
+}
+.apartment-input {
+  margin: 0 20px;
+}
+.textarea {
+  width: 100%;
+}
+.sent-btn {
+  margin: 5px auto 0;
+  padding: 5px 20px;
+  border-radius: 7px;
+  outline: none;
+  border: none;
+  background-color: aquamarine;
+  width: fit-content;
+}
+.sent-btn:hover {
+  cursor: pointer;
+  box-shadow: 5px 5px 5px rgba(127, 255, 212, 0.274);
 }

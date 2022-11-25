@@ -4,7 +4,7 @@ import { getAllApartment } from "../../../../API/apartmentAPI";
 import AuthContext from "../../../../store/auth-context";
 import ApartmentItem from "../ApartmentItem/ApartmentItem";
 import classes from "./PaginatedItems.module.css";
-function PaginatedItems({ itemsPerPage }) {
+function PaginatedItems({ itemsPerPage, setItemID }) {
   const [itemOffset, setItemOffset] = useState(0);
   const [apartmentList, setApartmentList] = useState([]);
   const authContext = useContext(AuthContext);
@@ -35,6 +35,7 @@ function PaginatedItems({ itemsPerPage }) {
         <div className={classes.list}>
           {currentItems.map((apartmentItemData) => (
             <ApartmentItem
+              setItemID={setItemID}
               data={apartmentItemData}
               key={apartmentItemData.id}
             />
