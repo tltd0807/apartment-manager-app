@@ -20,7 +20,7 @@ const UnpaidItem = (props) => {
       <p>
         <strong>Hóa đơn tháng:</strong>
         <span className={classes[`${hasMonthlyBill ? "not-have" : "had"}`]}>
-          {hasMonthlyBill ? " đã có" : " chưa có"}
+          {hasMonthlyBill ? " đã gửi" : " chưa gửi"}
         </span>
       </p>
     </div>

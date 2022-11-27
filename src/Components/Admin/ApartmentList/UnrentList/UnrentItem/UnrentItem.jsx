@@ -27,7 +27,7 @@ const UnrentItem = (props) => {
         <strong>Tình trạng:</strong> {statusContent}
       </p>
       <div>
-        <button>Đồng ý</button>
+        <button>Thông tin</button>
       </div>
     </div>
   );

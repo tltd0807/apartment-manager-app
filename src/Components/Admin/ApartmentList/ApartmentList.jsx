@@ -134,7 +134,7 @@ const ApartmentList = () => {
                 </p>
                 <p>
                   <strong>Loại: </strong>
-                  {itemInfo.type}USD
+                  {itemInfo.type}
                 </p>
                 <p>
                   <strong>Trạng thái: </strong>{" "}

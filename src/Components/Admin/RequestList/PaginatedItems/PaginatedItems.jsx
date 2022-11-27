@@ -4,7 +4,7 @@ import { getRentRequest } from "../../../../API/apartmentAPI";
 import AuthContext from "../../../../store/auth-context";
 import RentListItem from "../ApartmentItem/RentListItem";
 import classes from "./PaginatedItems.module.css";
-function PaginatedItems({ itemsPerPage }) {
+function PaginatedItems({ itemsPerPage, setRequestInfo }) {
   const [itemOffset, setItemOffset] = useState(0);
   const [rentRequestList, setRentRequestList] = useState([]);
   const authContext = useContext(AuthContext);
@@ -12,7 +12,6 @@ function PaginatedItems({ itemsPerPage }) {
   useEffect(() => {
     getRentRequest(authContext.token)
       .then((res) => {
-        // console.log(res.data);
         setRentRequestList(res.data);
       })
       .catch((err) => {
@@ -34,7 +33,11 @@ function PaginatedItems({ itemsPerPage }) {
     <div className={classes.container}>
       <h2 className={classes.header}>Danh sách yêu cầu thuê</h2>
       {currentItems.map((apartmentItemData) => (
-        <RentListItem data={apartmentItemData} key={apartmentItemData.id} />
+        <RentListItem
+          data={apartmentItemData}
+          key={apartmentItemData.id}
+          setRequestInfo={setRequestInfo}
+        />
       ))}
       <ReactPaginate
         breakLabel="..."

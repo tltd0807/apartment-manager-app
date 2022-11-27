@@ -3,8 +3,17 @@ import { getApartmentById } from "../../../../API/apartmentAPI";
 import classes from "./RentListItem.module.css";
 const RentListItem = (props) => {
   //   console.log(props.data);
-  const { numberOfParent, id, fullName, createDate, status, cccd, itemId } =
-    props.data;
+  const {
+    numberOfParent,
+    id,
+    fullName,
+    createDate,
+    status,
+    cccd,
+    itemId,
+    renterId,
+  } = props.data;
+  const { setRequestInfo } = props;
 
   const statusContent =
     status === false ? (
@@ -26,13 +35,29 @@ const RentListItem = (props) => {
         {cccd}
       </p>
       <p className={classes.numberOfParent}>
-        <strong>Number of parent: </strong>
+        <strong>Số người: </strong>
         {numberOfParent}
       </p>
       <p>
         <strong>Trạng thái: </strong>
         {statusContent}
       </p>
+      <button
+        onClick={() =>
+          setRequestInfo({
+            id: id,
+            numberOfParent: numberOfParent,
+            fullName: fullName,
+            createDate: createDate,
+            status: status,
+            cccd: cccd,
+            itemId: itemId,
+            renterId: renterId,
+          })
+        }
+      >
+        Thông tin
+      </button>
     </div>
   );
 };
