@@ -5,7 +5,7 @@ import classes from "./RequestInfo.module.css";
 const RequestInfo = ({ requestInfo }) => {
   const [apartmentInfo, setapartmentInfo] = useState({ status: 0, name: "" });
   const autCtx = useContext(AuthContext);
-  console.log(requestInfo);
+  //   console.log(requestInfo);
   useEffect(() => {
     if (requestInfo.id !== 0) {
       getApartmentById(requestInfo.itemId, autCtx.token)

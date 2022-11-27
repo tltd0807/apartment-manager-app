@@ -12,7 +12,7 @@ function PaginatedItems({ itemsPerPage, setRequestInfo }) {
   useEffect(() => {
     getRentRequest(authContext.token)
       .then((res) => {
-        setRentRequestList(res.data);
+        setRentRequestList(res.data.reverse());
       })
       .catch((err) => {
         console.log(err);

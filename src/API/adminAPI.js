@@ -55,3 +55,20 @@ export const assignApartment = async (data, token) => {
   );
   return res.data;
 };
+//data {
+//   "userId": 0,
+//   "itemId": 0,
+//   "hasRequest": true
+// }
+export const unassignApartment = async (data, token) => {
+  const res = await axios.put(
+    `https://buildingmanager-api.herokuapp.com/api/Admin/item/unassign`,
+    data,
+    {
+      headers: {
+        Authorization: `${token}`,
+      },
+    }
+  );
+  return res.data;
+};
