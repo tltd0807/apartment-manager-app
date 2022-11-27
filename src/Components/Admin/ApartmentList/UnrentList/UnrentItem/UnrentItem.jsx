@@ -1,11 +1,9 @@
 import React from "react";
 import classes from "./UnrentItem.module.css";
 const UnrentItem = (props) => {
-  // console.log(props.data.createDate.split("T")[0]);
-  // console.log(props);
   const { data } = props;
   const { status, createDate, fullName, cccd, itemId } = data;
-  // console.log(createDate);
+
   const statusContent =
     status === false ? (
       <span className={classes["not-rented"]}>Chưa xử lý</span>
@@ -27,7 +25,7 @@ const UnrentItem = (props) => {
         <strong>Tình trạng:</strong> {statusContent}
       </p>
       <div>
-        <button>Thông tin</button>
+        <button onClick={() => props.setUnrentInfo(data)}>Thông tin</button>
       </div>
     </div>
   );

@@ -34,7 +34,7 @@ function PaginatedItems({ itemsPerPage }) {
       <div className={classes.list}>
         {currentItems.map((unpaidItemData) => (
           // <RentListItem data={apartmentItemData} key={apartmentItemData.id} />
-          <UnpaidItem data={unpaidItemData} />
+          <UnpaidItem data={unpaidItemData} key={unpaidItemData.id} />
         ))}
         <ReactPaginate
           breakLabel="..."
