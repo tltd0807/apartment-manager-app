@@ -23,6 +23,7 @@ const ApartmentTable = () => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState();
   const [apartmentList, setApartmentList] = useState([]);
+  const [fileList, setFileList] = useState([]);
 
   const columns = [
     {
@@ -82,64 +83,6 @@ const ApartmentTable = () => {
         console.log(err);
       });
   }, [authContext.token]);
-  //   const dataSource = [
-  //     {
-  //       id: "1",
-  //       name: "Room 304",
-  //       price: "3mil/month",
-  //       type: "2 bedrooms, 2 bathrooms",
-  //       status: 0,
-  //     },
-  //     {
-  //       id: "2",
-  //       name: "Room 304",
-  //       price: "3mil/month",
-  //       type: "2 bedrooms, 2 bathrooms",
-  //       status: 0,
-  //     },
-  //     {
-  //       id: "3",
-  //       name: "Room 304",
-  //       price: "3mil/month",
-  //       type: "2 bedrooms, 2 bathrooms",
-  //       status: 0,
-  //     },
-  //     {
-  //       id: "4",
-  //       name: "Room 304",
-  //       price: "3mil/month",
-  //       type: "2 bedrooms, 2 bathrooms",
-  //       status: 1,
-  //     },
-  //     {
-  //       id: "5",
-  //       name: "Room 304",
-  //       price: "3mil/month",
-  //       type: "2 bedrooms, 2 bathrooms",
-  //       status: 1,
-  //     },
-  //     {
-  //       id: "6",
-  //       name: "Room 304",
-  //       price: "3mil/month",
-  //       type: "2 bedrooms, 2 bathrooms",
-  //       status: 1,
-  //     },
-  //     {
-  //       id: "7",
-  //       name: "Room 304",
-  //       price: "3mil/month",
-  //       type: "2 bedrooms, 2 bathrooms",
-  //       status: 1,
-  //     },
-  //     {
-  //       id: "8",
-  //       name: "Room 304",
-  //       price: "3mil/month",
-  //       type: "2 bedrooms, 2 bathrooms",
-  //       status: 1,
-  //     },
-  //   ];
 
   const handleChange = (info) => {
     if (info.file.status === "uploading") {
@@ -154,6 +97,14 @@ const ApartmentTable = () => {
       });
     }
   };
+  const handleChangeList = ({ fileList: newFileList }) => {
+    setFileList(
+      newFileList.filter(
+        (file) => file.type === "image/jpeg" || file.type === "image/png"
+      )
+    );
+  };
+
   const uploadButton = (
     <div>
       {loading ? <LoadingOutlined /> : <PlusOutlined />}
@@ -199,35 +150,58 @@ const ApartmentTable = () => {
           />
         </Col>
         {/* <Col span={8}></Col> */}
-        {/* <Col span={8}>
-            <p style={{ textAlign: "center", marginBottom: "20px" }}>
-              Room 304's detail
-            </p>
-            <div>
-              <p>Apartment Image</p>
-              <Upload
-                name="avatar"
-                listType="picture-card"
-                className="avatar-uploader"
-                showUploadList={false}
-                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                beforeUpload={beforeUpload}
-                onChange={handleChange}
-              >
-                {imageUrl ? (
-                  <img
-                    src={imageUrl}
-                    alt="avatar"
-                    style={{
-                      width: "100%",
-                    }}
-                  />
-                ) : (
-                  uploadButton
-                )}
-              </Upload>
-            </div>
-          </Col> */}
+        <Col span={8}>
+          <p style={{ textAlign: "center", marginBottom: "20px" }}>
+            Room 304's detail
+          </p>
+          <div>
+            <p>Apartment Image</p>
+            <Upload
+              name="avatar"
+              listType="picture-card"
+              className="avatar-uploader"
+              showUploadList={false}
+              // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+              beforeUpload={beforeUpload}
+              onChange={handleChange}
+              customRequest={({ onSuccess }) =>
+                setTimeout(() => {
+                  onSuccess("ok", null);
+                }, 1000)
+              }
+            >
+              {imageUrl ? (
+                <img
+                  src={imageUrl}
+                  alt="avatar"
+                  style={{
+                    width: "100%",
+                  }}
+                />
+              ) : (
+                uploadButton
+              )}
+            </Upload>
+          </div>
+          <div>
+            <p>Detail Image</p>
+            <Upload
+              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+              listType="picture-card"
+              fileList={fileList}
+              showUploadList={{ showPreviewIcon: false }}
+              onChange={handleChangeList}
+              beforeUpload={beforeUpload}
+              customRequest={({ onSuccess }) =>
+                setTimeout(() => {
+                  onSuccess("ok", null);
+                }, 100)
+              }
+            >
+              {fileList.length >= 3 ? null : uploadButton}
+            </Upload>
+          </div>
+        </Col>
       </Row>
     </LayoutAuthenticated>
   );
