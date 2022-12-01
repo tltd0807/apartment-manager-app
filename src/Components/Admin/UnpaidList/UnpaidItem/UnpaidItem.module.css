@@ -12,3 +12,10 @@
 .had {
   color: red;
 }
+.sent {
+  width: 75px;
+  font-size: 12px;
+}
+.sent:hover {
+  cursor: pointer;
+}

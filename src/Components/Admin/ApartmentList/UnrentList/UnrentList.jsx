@@ -16,7 +16,7 @@ const UnrentList = () => {
     renterId: -1,
     status: false,
   });
-  console.log(unrentInfo);
+  // console.log(unrentInfo);
   return (
     <div className={classes.container}>
       <div>

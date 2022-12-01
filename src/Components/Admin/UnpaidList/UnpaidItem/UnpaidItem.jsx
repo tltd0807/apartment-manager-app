@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import AuthContext from "../../../../store/auth-context";
 import classes from "./UnpaidItem.module.css";
+
 const UnpaidItem = (props) => {
   const { data } = props;
-  const { name, price, latedDay, renterName, hasMonthlyBill, renterId } = data;
+  const { name, price, latedDay, renterName, hasMonthlyBill, renterId, id } =
+    data;
+  const autCtx = useContext(AuthContext);
+
   return (
     <div className={classes["item-container"]}>
       <p>
@@ -23,6 +28,15 @@ const UnpaidItem = (props) => {
           {hasMonthlyBill ? " đã gửi" : " chưa gửi"}
         </span>
       </p>
+      <button
+        className={classes.sent}
+        onClick={() => {
+          props.setItemId(id);
+          props.setName(name);
+        }}
+      >
+        Gửi người dùng
+      </button>
     </div>
   );
 };

@@ -28,7 +28,7 @@ const UnrentInfo = ({ unrentInfo }) => {
         .catch((err) => console.log(err));
     }
   }, [unrentInfo]);
-  console.log(apartmentInfo);
+  //   console.log(apartmentInfo);
   const onUnassign = () => {
     if (
       window.confirm(

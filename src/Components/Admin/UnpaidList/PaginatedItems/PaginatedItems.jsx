@@ -4,7 +4,7 @@ import { getApartmentUnpaid } from "../../../../API/apartmentAPI";
 import AuthContext from "../../../../store/auth-context";
 import UnpaidItem from "../../UnpaidList/UnpaidItem/UnpaidItem";
 import classes from "./PaginatedItems.module.css";
-function PaginatedItems({ itemsPerPage }) {
+function PaginatedItems({ itemsPerPage, setItemId, setName }) {
   const [itemOffset, setItemOffset] = useState(0);
   const [unpaidList, setUnpaidList] = useState([]);
   const authContext = useContext(AuthContext);
@@ -12,6 +12,7 @@ function PaginatedItems({ itemsPerPage }) {
   useEffect(() => {
     getApartmentUnpaid(authContext.token)
       .then((res) => {
+        console.log(res.data);
         setUnpaidList(res.data);
       })
       .catch((err) => {
@@ -33,8 +34,12 @@ function PaginatedItems({ itemsPerPage }) {
     <div className={classes.container}>
       <div className={classes.list}>
         {currentItems.map((unpaidItemData) => (
-          // <RentListItem data={apartmentItemData} key={apartmentItemData.id} />
-          <UnpaidItem data={unpaidItemData} key={unpaidItemData.id} />
+          <UnpaidItem
+            data={unpaidItemData}
+            key={unpaidItemData.id}
+            setItemId={setItemId}
+            setName={setName}
+          />
         ))}
         <ReactPaginate
           breakLabel="..."

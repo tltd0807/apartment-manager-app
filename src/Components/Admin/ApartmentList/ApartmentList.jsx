@@ -23,7 +23,7 @@ const ApartmentList = () => {
     status: 0,
     renterName: null,
     numberOfParent: 0,
-    description: "P",
+    description: "",
     location: "",
     pictureUrl: ["", "", ""],
     videoUrl: "",
@@ -74,7 +74,7 @@ const ApartmentList = () => {
       formData.append("PictureUrl", img1);
       formData.append("PictureUrl", img2);
       formData.append("PictureUrl", img3);
-      console.log("running");
+      // console.log("running");
       editApartment(formData, authCtx.token)
         .then((res) => {
           window.alert("Thay đổi thành công");

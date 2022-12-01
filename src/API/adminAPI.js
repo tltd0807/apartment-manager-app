@@ -72,3 +72,16 @@ export const unassignApartment = async (data, token) => {
   );
   return res.data;
 };
+export const sentBill = async (id, data, token) => {
+  const res = await axios.post(
+    `https://buildingmanager-api.herokuapp.com/api/Admin/monthly-bill?itemId=${id}`,
+    data,
+    {
+      headers: {
+        Authorization: `${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  return res.data;
+};
