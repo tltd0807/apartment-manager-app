@@ -5,6 +5,7 @@ import classes from "./ApartmentList.module.css";
 import { getApartmentById, editApartment } from "../../../API/adminAPI";
 import AuthContext from "../../../store/auth-context";
 import LayoutAuthenticated from "../../Layout/LayoutAuthenticated";
+import ApartmentTable from "./ApartmentTable";
 const ApartmentList = () => {
   const [itemID, setItemID] = useState();
   const [img, setImg] = useState();
@@ -99,7 +100,7 @@ const ApartmentList = () => {
       <section className={classes.body}>
         <div className={classes.container}>
           <h1>Apartment List</h1>
-          <PaginatedItems itemsPerPage={6} setItemID={setItemID} />
+          {/* <PaginatedItems itemsPerPage={6} setItemID={setItemID} /> */}
         </div>
         <div className={classes.info}>
           {itemID && (

@@ -11,10 +11,10 @@ const AuthContext = React.createContext({
 
 export const AuthContextProvider = (props) => {
   const initToken = localStorage.getItem("token");
-  const [token, setToken] = useState(initToken);
-  const initUserName = localStorage.getItem("useName");
-  const [userName, setUserName] = useState(initUserName);
+  const initUserName = localStorage.getItem("userName");
   const initAvatarUrl = localStorage.getItem("avatarUrl");
+  const [token, setToken] = useState(initToken);
+  const [userName, setUserName] = useState(initUserName);
   const [avatarUrl, setAvatarUrl] = useState(initAvatarUrl);
 
   const userIsLoggedIn = !!token;

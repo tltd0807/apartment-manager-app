@@ -12,6 +12,7 @@ import ApartmentList from "./Components/Admin/ApartmentList/ApartmentList";
 import RequestList from "./Components/Admin/RequestList/RequestList";
 import UnrentList from "./Components/Admin/ApartmentList/UnrentList/UnrentList";
 import UnpaidList from "./Components/Admin/UnpaidList/UnpaidList";
+import ApartmentTable from "./Components/Admin/ApartmentList/ApartmentTable";
 function App() {
   const authCtx = useContext(AuthContext);
 
@@ -22,7 +23,7 @@ function App() {
       <Route path="/apartment" element={<ApartmentPage />} />
       {authCtx.isLoggedIn && <Route path="/admin" element={<AdminPage />} />}
       {authCtx.isLoggedIn && (
-        <Route path="/admin/apartments" element={<ApartmentList />} />
+        <Route path="/admin/apartments" element={<ApartmentTable />} />
       )}
       {authCtx.isLoggedIn && (
         <Route path="/admin/unpaid" element={<RequestList />} />
