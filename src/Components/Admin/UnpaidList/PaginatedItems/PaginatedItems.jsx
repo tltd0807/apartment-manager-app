@@ -12,7 +12,7 @@ function PaginatedItems({ itemsPerPage, setItemId, setName }) {
   useEffect(() => {
     getApartmentUnpaid(authContext.token)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setUnpaidList(res.data);
       })
       .catch((err) => {

@@ -4,6 +4,7 @@ import PaginatedItems from "./PaginatedItems/PaginatedItems";
 import classes from "./ApartmentList.module.css";
 import { getApartmentById, editApartment } from "../../../API/adminAPI";
 import AuthContext from "../../../store/auth-context";
+import LayoutAuthenticated from "../../Layout/LayoutAuthenticated";
 const ApartmentList = () => {
   const [itemID, setItemID] = useState();
   const [img, setImg] = useState();
@@ -94,108 +95,112 @@ const ApartmentList = () => {
     }
   };
   return (
-    <section className={classes.body}>
-      <div className={classes.container}>
-        <h1>Apartment List</h1>
-        <PaginatedItems itemsPerPage={6} setItemID={setItemID} />
-      </div>
-      <div className={classes.info}>
-        {itemID && (
-          <div>
-            <h1 className={classes["info-header"]}>Thông tin cụ thể</h1>
-
+    <LayoutAuthenticated>
+      <section className={classes.body}>
+        <div className={classes.container}>
+          <h1>Apartment List</h1>
+          <PaginatedItems itemsPerPage={6} setItemID={setItemID} />
+        </div>
+        <div className={classes.info}>
+          {itemID && (
             <div>
-              <img
-                src={itemInfo.avatarUrl}
-                alt="apartment image"
-                width={500}
-                height={200}
-              />
-              <div className={classes["img-container"]}>
-                {itemInfo.pictureUrl.map((pic, index) => (
-                  <img
-                    src={pic}
-                    alt="apartment image"
-                    width={150}
-                    height={100}
-                    key={index}
-                  />
-                ))}
-              </div>
-              <h2>{itemInfo.name}</h2>
+              <h1 className={classes["info-header"]}>Thông tin cụ thể</h1>
+
               <div>
-                <p>
-                  <strong>Mô tả: </strong>
-                  {itemInfo.description}
-                </p>
-                <p>
-                  <strong>Giá: </strong>
-                  {itemInfo.price}USD
-                </p>
-                <p>
-                  <strong>Loại: </strong>
-                  {itemInfo.type}
-                </p>
-                <p>
-                  <strong>Trạng thái: </strong>{" "}
-                  <span>{itemInfo.status === 0 ? "trống" : "đã cho thuê"}</span>
-                </p>
+                <img
+                  src={itemInfo.avatarUrl}
+                  alt="apartment image"
+                  width={500}
+                  height={200}
+                />
+                <div className={classes["img-container"]}>
+                  {itemInfo.pictureUrl.map((pic, index) => (
+                    <img
+                      src={pic}
+                      alt="apartment image"
+                      width={150}
+                      height={100}
+                      key={index}
+                    />
+                  ))}
+                </div>
+                <h2>{itemInfo.name}</h2>
+                <div>
+                  <p>
+                    <strong>Mô tả: </strong>
+                    {itemInfo.description}
+                  </p>
+                  <p>
+                    <strong>Giá: </strong>
+                    {itemInfo.price}USD
+                  </p>
+                  <p>
+                    <strong>Loại: </strong>
+                    {itemInfo.type}
+                  </p>
+                  <p>
+                    <strong>Trạng thái: </strong>{" "}
+                    <span>
+                      {itemInfo.status === 0 ? "trống" : "đã cho thuê"}
+                    </span>
+                  </p>
+                </div>
               </div>
             </div>
+          )}
+        </div>
+        <form onSubmit={onSubmitHander} className={classes.form} id="form">
+          <h1 className={classes["info-header"]}>
+            Thay đổi thông tin của <span> {itemInfo.name}</span>
+          </h1>
+          <div>
+            <label className={classes["input-label"]}>Hình căn hộ chính:</label>
+            <input
+              type="file"
+              ref={avaRef}
+              onChange={(e) => setImg(e.target.files[0])}
+            />
+            <label className={classes["input-label"]}>Hình chi tiết:</label>
+            <input
+              type="file"
+              ref={img1Ref}
+              onChange={(e) => setImg1(e.target.files[0])}
+            />
+            <input
+              type="file"
+              ref={img2Ref}
+              onChange={(e) => setImg2(e.target.files[0])}
+            />
+            <input
+              type="file"
+              ref={img3Ref}
+              onChange={(e) => setImg3(e.target.files[0])}
+            />
           </div>
-        )}
-      </div>
-      <form onSubmit={onSubmitHander} className={classes.form} id="form">
-        <h1 className={classes["info-header"]}>
-          Thay đổi thông tin của <span> {itemInfo.name}</span>
-        </h1>
-        <div>
-          <label className={classes["input-label"]}>Hình căn hộ chính:</label>
-          <input
-            type="file"
-            ref={avaRef}
-            onChange={(e) => setImg(e.target.files[0])}
-          />
-          <label className={classes["input-label"]}>Hình chi tiết:</label>
-          <input
-            type="file"
-            ref={img1Ref}
-            onChange={(e) => setImg1(e.target.files[0])}
-          />
-          <input
-            type="file"
-            ref={img2Ref}
-            onChange={(e) => setImg2(e.target.files[0])}
-          />
-          <input
-            type="file"
-            ref={img3Ref}
-            onChange={(e) => setImg3(e.target.files[0])}
-          />
-        </div>
-        <div>
-          <label className={classes["input-label"]}>Mô tả:</label>
-          <textarea
-            type="text"
-            className={classes.textarea}
-            ref={descriptionRef}
-          />
-        </div>
+          <div>
+            <label className={classes["input-label"]}>Mô tả:</label>
+            <textarea
+              type="text"
+              className={classes.textarea}
+              ref={descriptionRef}
+            />
+          </div>
 
-        <div>
-          <label className={classes["input-label"]}>Giá:</label>
-          <input type="number" ref={priceRef} />
-        </div>
-        <br />
-        {itemInfo.status === 0 ? (
-          <button className={classes["sent-btn"]}>Thay đổi</button>
-        ) : (
-          <button className={classes["sent-btn"]} disabled>
-            Thay đổi
-          </button>
-        )}
-      </form>
-    </section>
+          <div>
+            <label className={classes["input-label"]}>Giá:</label>
+            <input type="number" ref={priceRef} />
+          </div>
+          <br />
+          {itemInfo.status === 0 ? (
+            <button className={classes["sent-btn"]}>Thay đổi</button>
+          ) : (
+            <button className={classes["sent-btn"]} disabled>
+              Thay đổi
+            </button>
+          )}
+        </form>
+      </section>
+    </LayoutAuthenticated>
   );
 };
 

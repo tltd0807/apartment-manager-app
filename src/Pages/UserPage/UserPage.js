@@ -15,7 +15,7 @@ const UserPage = (props) => {
   const [isList, setIsList] = useState(true);
   const [isInfo, setIsInfo] = useState(false);
   const [isRent, setIsRent] = useState(false);
-  const { state } = useLocation();
+  const { userInfo } = useLocation();
 
   return (
     <section>
@@ -32,7 +32,7 @@ const UserPage = (props) => {
           setIsInfo: setIsInfo,
           setIsRent: setIsRent,
         }}
-        userInfo={state}
+        userInfo={userInfo}
       />
       {isList && (
         <div>

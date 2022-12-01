@@ -41,7 +41,7 @@ const SignIn = () => {
         .then((res) => {
           // login thanfh cong
           // console.log(res);
-          authCtx.login(res.token);
+          authCtx.login(res.token, res.username, res.avatarUrl);
           setSigninFail(false);
           if (res.roleId === 1) {
             navigate("/user", {

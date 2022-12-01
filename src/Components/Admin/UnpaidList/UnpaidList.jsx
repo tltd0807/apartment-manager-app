@@ -3,6 +3,7 @@ import PaginatedItems from "./PaginatedItems/PaginatedItems";
 import { sentBill } from "../../../API/adminAPI";
 import AuthContext from "../../../store/auth-context";
 import classes from "./UnpaidList.module.css";
+import LayoutAuthenticated from "../../Layout/LayoutAuthenticated";
 
 const UnpaidList = () => {
   const [elecPrice, setElecPrice] = useState(0);
@@ -57,81 +58,83 @@ const UnpaidList = () => {
     }
   };
   return (
-    <div className={classes.container}>
-      <div>
-        <h1>Unpaid List</h1>
+    <LayoutAuthenticated>
+      <div className={classes.container}>
         <div>
-          <PaginatedItems
-            itemsPerPage={4}
-            setItemId={setItemId}
-            setName={setName}
-          />
+          <h1>Unpaid List</h1>
+          <div>
+            <PaginatedItems
+              itemsPerPage={4}
+              setItemId={setItemId}
+              setName={setName}
+            />
+          </div>
         </div>
-      </div>
-      <div>
-        <h1 className={classes.header}>
-          Thông tin hóa đơn gửi người dùng thuê <span>{name}</span>
-        </h1>
-        <form onSubmit={onSubmitHander}>
-          <div>
-            <label className={classes["input-label"]}>Giá điện:</label>
-            <input
-              type="number"
-              ref={electricRef}
-              min={0}
-              value={elecPrice}
-              onChange={(e) => setElecPrice(e.target.value)}
-            />
-          </div>
-          <div>
-            <label className={classes["input-label"]}>Hóa đơn điện:</label>
-            <input
-              type="file"
-              ref={eleImgRef}
-              onChange={(e) => setEleImg(e.target.files[0])}
-            />
-          </div>
-          <div>
-            <label className={classes["input-label"]}>Giá nước:</label>
-            <input
-              type="number"
-              ref={waterRef}
-              value={waterPrice}
-              onChange={(e) => setWaterPrice(e.target.value)}
-            />
+        <div>
+          <h1 className={classes.header}>
+            Thông tin hóa đơn gửi người dùng thuê <span>{name}</span>
+          </h1>
+          <form onSubmit={onSubmitHander}>
             <div>
-              <label className={classes["input-label"]}>Hóa đơn nước:</label>
+              <label className={classes["input-label"]}>Giá điện:</label>
+              <input
+                type="number"
+                ref={electricRef}
+                min={0}
+                value={elecPrice}
+                onChange={(e) => setElecPrice(e.target.value)}
+              />
+            </div>
+            <div>
+              <label className={classes["input-label"]}>Hóa đơn điện:</label>
               <input
                 type="file"
-                ref={waterImgRef}
-                onChange={(e) => setWaterImg(e.target.files[0])}
+                ref={eleImgRef}
+                onChange={(e) => setEleImg(e.target.files[0])}
               />
             </div>
             <div>
-              <label className={classes["input-label"]}>Giá giữ xe:</label>
+              <label className={classes["input-label"]}>Giá nước:</label>
               <input
                 type="number"
-                ref={carRef}
-                value={carPrice}
-                onChange={(e) => setCarPrice(e.target.value)}
+                ref={waterRef}
+                value={waterPrice}
+                onChange={(e) => setWaterPrice(e.target.value)}
               />
+              <div>
+                <label className={classes["input-label"]}>Hóa đơn nước:</label>
+                <input
+                  type="file"
+                  ref={waterImgRef}
+                  onChange={(e) => setWaterImg(e.target.files[0])}
+                />
+              </div>
+              <div>
+                <label className={classes["input-label"]}>Giá giữ xe:</label>
+                <input
+                  type="number"
+                  ref={carRef}
+                  value={carPrice}
+                  onChange={(e) => setCarPrice(e.target.value)}
+                />
+              </div>
+              <div>
+                <label className={classes["input-label"]}>
+                  Phí dịch vụ khác:
+                </label>
+                <input
+                  type="number"
+                  ref={otherRef}
+                  value={otherPrice}
+                  onChange={(e) => setOtherPrice(e.target.value)}
+                />
+              </div>
             </div>
-            <div>
-              <label className={classes["input-label"]}>
-                Phí dịch vụ khác:
-              </label>
-              <input
-                type="number"
-                ref={otherRef}
-                value={otherPrice}
-                onChange={(e) => setOtherPrice(e.target.value)}
-              />
-            </div>
-          </div>
-          <button>Gửi</button>
-        </form>
+            <button>Gửi</button>
+          </form>
+        </div>
       </div>
-    </div>
+    </LayoutAuthenticated>
   );
 };
 

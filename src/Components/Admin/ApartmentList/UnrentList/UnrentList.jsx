@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import LayoutAuthenticated from "../../../Layout/LayoutAuthenticated";
 import PaginatedItems from "./PaginatedItems/PaginatedItems";
 import UnrentInfo from "./UnrentInfo/UnrentInfo";
 import classes from "./UnrentList.module.css";
@@ -18,16 +19,18 @@ const UnrentList = () => {
   });
   // console.log(unrentInfo);
   return (
-    <div className={classes.container}>
-      <div>
-        <h1>Danh sách yêu cầu thuê</h1>
-        <PaginatedItems itemsPerPage={4} setUnrentInfo={setUnrentInfo} />
+    <LayoutAuthenticated>
+      <div className={classes.container}>
+        <div>
+          <h1>Danh sách yêu cầu thuê</h1>
+          <PaginatedItems itemsPerPage={4} setUnrentInfo={setUnrentInfo} />
+        </div>
+        <div>
+          <h1 className={classes.header}>Thông tin yêu cầu</h1>
+          <UnrentInfo unrentInfo={unrentInfo} />
+        </div>
       </div>
-      <div>
-        <h1 className={classes.header}>Thông tin yêu cầu</h1>
-        <UnrentInfo unrentInfo={unrentInfo} />
-      </div>
-    </div>
+    </LayoutAuthenticated>
   );
 };
 
