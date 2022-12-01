@@ -33,9 +33,7 @@ function App() {
       {authCtx.isLoggedIn && (
         <Route path="/admin/request" element={<UnpaidList />} />
       )}
-      {authCtx.isLoggedIn && (
-        <Route path="/admin/user" element={<UserPage />} />
-      )}
+      {authCtx.isLoggedIn && <Route path="/user" element={<UserPage />} />}
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

@@ -80,8 +80,8 @@ const UserHeader = (props) => {
         className={classes["welcome-title"]}
         onClick={() => onClickHandler(0)}
       >
-        <img src={userInfo.avatarUrl} alt="ava" className={classes.ava} />
-        <p>{userInfo.username}</p>
+        <img src={authCtx.avatarUrl} alt="ava" className={classes.ava} />
+        <p>{authCtx.userName}</p>
       </h1>
       <div className={classes["header-right"]}>
         <div
@@ -96,14 +96,7 @@ const UserHeader = (props) => {
         >
           Căn hộ đang thuê
         </div>
-        <div
-          className={`${classes["header-item"]} ${
-            isMoreMem && classes.active
-          } `}
-          onClick={() => onClickHandler(3)}
-        >
-          Thêm thành viên
-        </div>
+
         <div
           className={`${classes["header-item"]} ${isPay && classes.active} `}
           onClick={() => onClickHandler(4)}
