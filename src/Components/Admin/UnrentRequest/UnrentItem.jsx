@@ -1,12 +1,13 @@
-import { Button, Descriptions, Tag, Modal, Spin, message } from "antd";
 import React, { useContext, useState, useEffect } from "react";
 
-import { assignApartment, getApartmentById } from "../../../API/adminAPI";
+import { Button, Descriptions, Tag, Modal, Spin, message } from "antd";
 import AuthContext from "../../../store/auth-context";
+import { unassignApartment } from "../../../API/adminAPI";
+import { getAminApartmentById } from "../../../API/apartmentAPI";
 
-const RequestInfo = (props) => {
+const UnrentItem = (props) => {
   const [apartmentInfo, setapartmentInfo] = useState({ status: 0, name: "" });
-  const { requestInfo } = props;
+  const { unrentInfo } = props;
   const authContext = useContext(AuthContext);
   const { confirm } = Modal;
   const [messageApi, contextHolder] = message.useMessage();
@@ -25,15 +26,14 @@ const RequestInfo = (props) => {
   const showConfirm = () => {
     confirm({
       title: "XÁC NHẬN",
-      content: `Đồng ý yêu cầu thuê của người dùng ${requestInfo.fullName} với căn hộ ${apartmentInfo.name}`,
+      content: `Đồng ý yêu cầu thuê của người dùng ${unrentInfo.fullName} với căn hộ ${apartmentInfo.name}`,
       onOk() {
-        assignApartment(
-          { userId: requestInfo.renterId, itemId: requestInfo.itemId },
+        unassignApartment(
+          { userId: unrentInfo.renterId, itemId: unrentInfo.itemId },
           authContext.token
         )
           .then((res) => {
             success(res.message);
-
             props.setOnReload((prev) => !prev);
           })
           .catch((err) => {
@@ -45,54 +45,36 @@ const RequestInfo = (props) => {
       },
     });
   };
-
   useEffect(() => {
-    if (requestInfo.id !== 0) {
-      getApartmentById(requestInfo.itemId, authContext.token)
-        .then((res) => {
-          setapartmentInfo(res.data);
-        })
+    if (unrentInfo.id !== 0) {
+      getAminApartmentById(unrentInfo.itemId, authContext.token)
+        .then((res) => setapartmentInfo(res.data))
         .catch((err) => console.log(err));
     }
-  }, [requestInfo.id]);
-
+  }, [unrentInfo.id]);
   return (
     <div style={{ marginLeft: "100px" }}>
       {contextHolder}
-      {apartmentInfo.name !== "" && (
+      {unrentInfo.name !== "" && (
         <Descriptions title="" column={2}>
           <Descriptions.Item label="Tên người yêu cầu">
-            {requestInfo.fullName}
+            {unrentInfo.fullName}
           </Descriptions.Item>
           <Descriptions.Item label="Ngày tạo">
-            {requestInfo.createDate}
+            {unrentInfo.createDate}
           </Descriptions.Item>
 
           <Descriptions.Item label="Số định danh người thuê">
-            {requestInfo.cccd}
+            {unrentInfo.cccd}
           </Descriptions.Item>
 
-          <Descriptions.Item label="Trạng thái yêu cầu">
-            {requestInfo.status === false ? (
-              <Tag color="green">Chưa xử lý</Tag>
-            ) : (
-              <Tag color="volcano">Đã xử lý</Tag>
-            )}
-          </Descriptions.Item>
-          <Descriptions.Item label="Trạng thái căn hộ">
-            {apartmentInfo.status === 0 ? (
-              <Tag color="green">Còn trống</Tag>
-            ) : (
-              <Tag color="volcano">Đã được thuê</Tag>
-            )}
-          </Descriptions.Item>
           <Descriptions.Item label="Tên căn hộ ">
             {apartmentInfo.name}
           </Descriptions.Item>
         </Descriptions>
       )}
       {apartmentInfo.name !== "" &&
-        (apartmentInfo.status === 0 && requestInfo.status === false ? (
+        (unrentInfo.status === false ? (
           <Button onClick={showConfirm}>Đồng ý</Button>
         ) : (
           <Button disabled>Đồng ý</Button>
@@ -101,4 +83,4 @@ const RequestInfo = (props) => {
   );
 };
 
-export default RequestInfo;
+export default UnrentItem;

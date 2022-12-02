@@ -9,7 +9,7 @@ export const getApartmentById = async (id) => {
 
 export const getAminApartmentById = async (id, token) => {
   const res = await axios.get(
-    `https://buildingmanager-api-v2.herokuapp.com/api/System/items/${id}`,
+    `https://buildingmanager-api-v2.herokuapp.com/api/Admin/items/${id}`,
     { headers: { Authorization: `${token}` } }
   );
   return res.data;

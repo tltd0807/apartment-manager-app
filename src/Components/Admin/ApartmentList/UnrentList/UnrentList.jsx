@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import LayoutAuthenticated from "../../../Layout/LayoutAuthenticated";
+import UnrentRequest from "../../UnrentRequest/UnrentRequest";
 import PaginatedItems from "./PaginatedItems/PaginatedItems";
 import UnrentInfo from "./UnrentInfo/UnrentInfo";
 import classes from "./UnrentList.module.css";
@@ -29,6 +30,9 @@ const UnrentList = () => {
           <h1 className={classes.header}>Thông tin yêu cầu</h1>
           <UnrentInfo unrentInfo={unrentInfo} />
         </div>
+      </div>
+      <div>
+        <UnrentRequest />
       </div>
     </LayoutAuthenticated>
   );
