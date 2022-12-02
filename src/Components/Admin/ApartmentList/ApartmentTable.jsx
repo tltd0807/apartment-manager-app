@@ -22,7 +22,7 @@ import {
 import { getAllApartment } from "../../../API/apartmentAPI";
 import AuthContext from "../../../store/auth-context";
 import { editApartment } from "../../../API/adminAPI";
-
+import ApartmentInfo from "./ApartmentInfo";
 const ApartmentTable = () => {
   const { TextArea } = Input;
   const authContext = useContext(AuthContext);
@@ -31,7 +31,7 @@ const ApartmentTable = () => {
   const [apartmentList, setApartmentList] = useState([]);
   const [fileList, setFileList] = useState([]);
   const [messageApi, contextHolder] = message.useMessage();
-
+  const [itemId, setItemId] = useState(-1);
   const error = (mes) => {
     messageApi.error(mes);
   };
@@ -79,7 +79,13 @@ const ApartmentTable = () => {
       dataIndex: "option",
       render: (text, record, index) => (
         <Space size="middle">
-          <Button onClick={() => console.log(record.id)}>Chi tiết</Button>
+          <Button
+            onClick={() => {
+              setItemId(record.id);
+            }}
+          >
+            Chi tiết
+          </Button>
         </Space>
       ),
     },
@@ -123,14 +129,6 @@ const ApartmentTable = () => {
   };
 
   const onFinish = (values) => {
-    // console.log("Success:", values);
-    // // send put request here
-    // console.log(
-    //   "values.description==undefined: ",
-    //   values.description == undefined ? "" : values.description
-    // );
-
-    // console.log("values.avatar ", values.avatar);
     const formData = new FormData();
 
     if (values.detailImg) {
@@ -248,7 +246,9 @@ const ApartmentTable = () => {
             pagination={{ defaultPageSize: "4" }}
           />
         </Col>
-        <Col span={10}></Col>
+        <Col span={10}>
+          <ApartmentInfo itemId={itemId} />
+        </Col>
         <Col span={6}>
           <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
             Sửa thông tin
