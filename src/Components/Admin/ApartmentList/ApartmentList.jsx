@@ -76,6 +76,7 @@ const ApartmentList = () => {
       formData.append("PictureUrl", img1);
       formData.append("PictureUrl", img2);
       formData.append("PictureUrl", img3);
+      console.log(img1);
       // console.log("running");
       editApartment(formData, authCtx.token)
         .then((res) => {

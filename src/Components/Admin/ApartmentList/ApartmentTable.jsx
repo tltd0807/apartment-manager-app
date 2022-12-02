@@ -7,7 +7,10 @@ import {
   Tag,
   message,
   Upload,
-  Pagination,
+  Form,
+  Input,
+  Radio,
+  InputNumber,
 } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import LayoutAuthenticated from "../../Layout/LayoutAuthenticated";
@@ -18,14 +21,28 @@ import {
 } from "@ant-design/icons";
 import { getAllApartment } from "../../../API/apartmentAPI";
 import AuthContext from "../../../store/auth-context";
+import { editApartment } from "../../../API/adminAPI";
 
 const ApartmentTable = () => {
+  const { TextArea } = Input;
+  const authContext = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState();
   const [apartmentList, setApartmentList] = useState([]);
   const [fileList, setFileList] = useState([]);
+  const [messageApi, contextHolder] = message.useMessage();
 
+  const error = (mes) => {
+    messageApi.error(mes);
+  };
+  const success = (mes) => {
+    messageApi.success(mes);
+  };
   const columns = [
+    {
+      title: "Mã",
+      dataIndex: "id",
+    },
     {
       title: "Tên",
       dataIndex: "name",
@@ -60,14 +77,13 @@ const ApartmentTable = () => {
     {
       title: "",
       dataIndex: "option",
-      render: () => (
+      render: (text, record, index) => (
         <Space size="middle">
-          <Button>Chi tiết</Button>
+          <Button onClick={() => console.log(record.id)}>Chi tiết</Button>
         </Space>
       ),
     },
   ];
-  const authContext = useContext(AuthContext);
 
   useEffect(() => {
     getAllApartment(authContext.token)
@@ -77,6 +93,7 @@ const ApartmentTable = () => {
           delete item["avatarUrl"];
           item["price"] = item["price"] + " USD/mo";
         });
+        // console.log(dataSource);
         setApartmentList(dataSource);
       })
       .catch((err) => {
@@ -103,6 +120,87 @@ const ApartmentTable = () => {
         (file) => file.type === "image/jpeg" || file.type === "image/png"
       )
     );
+  };
+
+  const onFinish = (values) => {
+    // console.log("Success:", values);
+    // // send put request here
+    // console.log(
+    //   "values.description==undefined: ",
+    //   values.description == undefined ? "" : values.description
+    // );
+
+    // console.log("values.avatar ", values.avatar);
+    const formData = new FormData();
+
+    if (values.detailImg) {
+      if (
+        values.detailImg.fileList.length < 3 &&
+        values.detailImg.fileList.length > 0
+      ) {
+        error("Vui lòng thêm đủ 3 hình chi tiết hoặc không thêm");
+        return;
+      } else if (values.detailImg.fileList.length == 0) {
+        formData.append("PictureUrl", "");
+      } else if (values.detailImg.fileList.length == 3) {
+        formData.append(
+          "PictureUrl",
+          values.detailImg.fileList[0].originFileObj
+        );
+        formData.append(
+          "PictureUrl",
+          values.detailImg.fileList[1].originFileObj
+        );
+        formData.append(
+          "PictureUrl",
+          values.detailImg.fileList[2].originFileObj
+        );
+      }
+    } else {
+      formData.append(
+        "PictureUrl",
+        values.detailImg == undefined
+          ? ""
+          : values.detailImg.fileList[0].originFileObj
+      );
+      formData.append(
+        "PictureUrl",
+        values.detailImg == undefined
+          ? ""
+          : values.detailImg.fileList[1].originFileObj
+      );
+      formData.append(
+        "PictureUrl",
+        values.detailImg == undefined
+          ? ""
+          : values.detailImg.fileList[2].originFileObj
+      );
+    }
+
+    formData.append("Id", values.id);
+    formData.append(
+      "Description",
+      values.description == undefined ? "Chưa có mô tả" : values.description
+    );
+    formData.append("Price", values.price);
+    formData.append("Status", 0);
+    formData.append(
+      "AvatarUrl",
+      values.avatar == undefined ? "" : values.avatar.file.originFileObj
+    );
+    formData.append("VideoUrl", "");
+
+    editApartment(formData, authContext.token)
+      .then((res) => {
+        success("Thay đổi thành công");
+      })
+      .catch((err) => {
+        error("Thay đổi thất bại, vui lòng thử lại sau");
+        console.log(err);
+      });
+  };
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
   };
 
   const uploadButton = (
@@ -137,10 +235,11 @@ const ApartmentTable = () => {
 
   return (
     <LayoutAuthenticated>
+      {contextHolder}
       <Row>
         <Col span={8}>
           <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
-            Apartment List
+            Danh sách căn hộ
           </h2>
           <Table
             rowKey="id"
@@ -149,58 +248,129 @@ const ApartmentTable = () => {
             pagination={{ defaultPageSize: "4" }}
           />
         </Col>
-        {/* <Col span={8}></Col> */}
-        <Col span={8}>
-          <p style={{ textAlign: "center", marginBottom: "20px" }}>
-            Room 304's detail
-          </p>
-          <div>
-            <p>Apartment Image</p>
-            <Upload
-              name="avatar"
-              listType="picture-card"
-              className="avatar-uploader"
-              showUploadList={false}
-              // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-              beforeUpload={beforeUpload}
-              onChange={handleChange}
-              customRequest={({ onSuccess }) =>
-                setTimeout(() => {
-                  onSuccess("ok", null);
-                }, 1000)
-              }
+        <Col span={6}></Col>
+        <Col span={10}>
+          <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
+            Sửa thông tin
+          </h2>
+          <Form
+            name="basic"
+            labelCol={{
+              span: 4,
+            }}
+            wrapperCol={{
+              span: 14,
+            }}
+            layout="horizontal"
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
+          >
+            {/* <Form.Item label="Radio" name="Radio">
+              <Radio.Group>
+                <Radio value="apple"> Apple </Radio>
+                <Radio value="pear"> Pear </Radio>
+              </Radio.Group>
+            </Form.Item> */}
+            <Form.Item
+              label="Mã căn hộ"
+              name="id"
+              // onChange={onValuesChangeInput}
+              rules={[
+                {
+                  required: true,
+                  message: "Vui lòng nhập mã căn hộ",
+                },
+              ]}
             >
-              {imageUrl ? (
-                <img
-                  src={imageUrl}
-                  alt="avatar"
-                  style={{
-                    width: "100%",
-                  }}
-                />
+              <Input />
+            </Form.Item>
+
+            <Form.Item
+              label="Giá"
+              name="price"
+              rules={[
+                {
+                  required: true,
+                  message: "Vui lòng điền giá tiền thuê",
+                },
+              ]}
+            >
+              <InputNumber min={1000} />
+            </Form.Item>
+            <Form.Item label="Mô tả" name={"description"}>
+              <TextArea rows={4} />
+            </Form.Item>
+
+            <Form.Item label="Hình chính" valuePropName="file" name="avatar">
+              <Upload
+                name="avatar"
+                listType="picture-card"
+                className="avatar-uploader"
+                showUploadList={false}
+                beforeUpload={beforeUpload}
+                onChange={handleChange}
+                customRequest={({ onSuccess }) =>
+                  setTimeout(() => {
+                    onSuccess("ok", null);
+                  }, 1000)
+                }
+              >
+                {imageUrl ? (
+                  <img
+                    src={imageUrl}
+                    alt="avatar"
+                    style={{
+                      width: "100%",
+                    }}
+                  />
+                ) : (
+                  uploadButton
+                )}
+              </Upload>
+            </Form.Item>
+
+            <Form.Item
+              label="Hình chi tiết"
+              valuePropName="file"
+              name="detailImg"
+            >
+              <Upload
+                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                listType="picture-card"
+                fileList={fileList}
+                showUploadList={{ showPreviewIcon: false }}
+                onChange={handleChangeList}
+                beforeUpload={beforeUpload}
+                customRequest={({ onSuccess }) =>
+                  setTimeout(() => {
+                    onSuccess("ok", null);
+                  }, 100)
+                }
+              >
+                {fileList.length >= 3 ? null : uploadButton}
+              </Upload>
+            </Form.Item>
+
+            <Form.Item
+              wrapperCol={{
+                offset: 8,
+                span: 16,
+              }}
+            >
+              {/* {validated ? (
+                <Button type="primary" htmlType="submit">
+                  Submit
+                </Button>
               ) : (
-                uploadButton
-              )}
-            </Upload>
-          </div>
-          <div>
-            <p>Detail Image</p>
-            <Upload
-              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-              listType="picture-card"
-              fileList={fileList}
-              showUploadList={{ showPreviewIcon: false }}
-              onChange={handleChangeList}
-              beforeUpload={beforeUpload}
-              customRequest={({ onSuccess }) =>
-                setTimeout(() => {
-                  onSuccess("ok", null);
-                }, 100)
-              }
-            >
-              {fileList.length >= 3 ? null : uploadButton}
-            </Upload>
-          </div>
+                <Button type="primary" htmlType="submit" disabled>
+                  Submit
+                </Button>
+              )} */}
+              <Button type="primary" htmlType="submit">
+                Submit
+              </Button>
+            </Form.Item>
+          </Form>
         </Col>
       </Row>
     </LayoutAuthenticated>
