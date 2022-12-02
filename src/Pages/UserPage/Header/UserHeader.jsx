@@ -1,13 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "../../../Components/Layout/Button/Button";
+// import Button from "../../../Components/Layout/Button/Button";
 import AuthContext from "../../../store/auth-context";
-
+import { Button, Modal } from "antd";
 import classes from "./UserHeader.module.css";
 
 const UserHeader = (props) => {
   const { userInfo } = props;
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+    authCtx.logout();
+    navigate("/");
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   const {
     isPay,
     isMoreMem,
@@ -71,41 +82,50 @@ const UserHeader = (props) => {
 
   const authCtx = useContext(AuthContext);
   const LogoutHandler = () => {
-    authCtx.logout();
-    navigate("/");
+    showModal();
   };
   return (
-    <header className={classes["header-cotainer"]}>
-      <h1
-        className={classes["welcome-title"]}
-        onClick={() => onClickHandler(0)}
+    <>
+      <Modal
+        title="Thoát"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
       >
-        <img src={authCtx.avatarUrl} alt="ava" className={classes.ava} />
-        <p>{authCtx.userName}</p>
-      </h1>
-      <div className={classes["header-right"]}>
-        <div
-          className={`${classes["header-item"]} ${isList && classes.active} `}
-          onClick={() => onClickHandler(1)}
+        <p>Bạn muốn đăng xuất ?</p>
+      </Modal>
+      <header className={classes["header-cotainer"]}>
+        <h1
+          className={classes["welcome-title"]}
+          onClick={() => onClickHandler(0)}
         >
-          Danh sách căn hộ trống
-        </div>
-        <div
-          className={`${classes["header-item"]} ${isRent && classes.active} `}
-          onClick={() => onClickHandler(5)}
-        >
-          Căn hộ đang thuê
-        </div>
+          <img src={authCtx.avatarUrl} alt="ava" className={classes.ava} />
+          <p>{authCtx.userName}</p>
+        </h1>
+        <div className={classes["header-right"]}>
+          <div
+            className={`${classes["header-item"]} ${isList && classes.active} `}
+            onClick={() => onClickHandler(1)}
+          >
+            Danh sách căn hộ trống
+          </div>
+          <div
+            className={`${classes["header-item"]} ${isRent && classes.active} `}
+            onClick={() => onClickHandler(5)}
+          >
+            Căn hộ đang thuê
+          </div>
 
-        <div
-          className={`${classes["header-item"]} ${isPay && classes.active} `}
-          onClick={() => onClickHandler(4)}
-        >
-          Hóa đơn
+          <div
+            className={`${classes["header-item"]} ${isPay && classes.active} `}
+            onClick={() => onClickHandler(4)}
+          >
+            Hóa đơn
+          </div>
+          <Button onClick={LogoutHandler}>Đăng xuất</Button>
         </div>
-        <Button onClick={LogoutHandler}>Đăng xuất</Button>
-      </div>
-    </header>
+      </header>
+    </>
   );
 };
 

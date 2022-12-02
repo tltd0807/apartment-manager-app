@@ -248,29 +248,23 @@ const ApartmentTable = () => {
             pagination={{ defaultPageSize: "4" }}
           />
         </Col>
-        <Col span={6}></Col>
-        <Col span={10}>
+        <Col span={10}></Col>
+        <Col span={6}>
           <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
             Sửa thông tin
           </h2>
           <Form
             name="basic"
             labelCol={{
-              span: 4,
+              span: 6,
             }}
             wrapperCol={{
-              span: 14,
+              span: 20,
             }}
             layout="horizontal"
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
           >
-            {/* <Form.Item label="Radio" name="Radio">
-              <Radio.Group>
-                <Radio value="apple"> Apple </Radio>
-                <Radio value="pear"> Pear </Radio>
-              </Radio.Group>
-            </Form.Item> */}
             <Form.Item
               label="Mã căn hộ"
               name="id"
@@ -357,15 +351,6 @@ const ApartmentTable = () => {
                 span: 16,
               }}
             >
-              {/* {validated ? (
-                <Button type="primary" htmlType="submit">
-                  Submit
-                </Button>
-              ) : (
-                <Button type="primary" htmlType="submit" disabled>
-                  Submit
-                </Button>
-              )} */}
               <Button type="primary" htmlType="submit">
                 Submit
               </Button>

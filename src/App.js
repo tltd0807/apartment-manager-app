@@ -8,7 +8,6 @@ import NotFound from "./Pages/ErrorPage/NotFound";
 import ApartmentPage from "./Pages/ApartmentPage/ApartmentPage";
 import { useContext } from "react";
 import AuthContext from "./store/auth-context";
-import ApartmentList from "./Components/Admin/ApartmentList/ApartmentList";
 import RequestList from "./Components/Admin/RequestList/RequestList";
 import UnrentList from "./Components/Admin/ApartmentList/UnrentList/UnrentList";
 import UnpaidList from "./Components/Admin/UnpaidList/UnpaidList";
@@ -25,9 +24,7 @@ function App() {
       {authCtx.isLoggedIn && (
         <Route path="/admin/apartments" element={<ApartmentTable />} />
       )}
-      {/* {authCtx.isLoggedIn && (
-        <Route path="/admin/apartmentslist" element={<ApartmentList />} />
-      )} */}
+
       {authCtx.isLoggedIn && (
         <Route path="/admin/unpaid" element={<RequestList />} />
       )}
