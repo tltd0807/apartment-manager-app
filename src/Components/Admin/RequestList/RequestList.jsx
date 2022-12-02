@@ -22,7 +22,7 @@ const RequestList = () => {
 
   return (
     <LayoutAuthenticated>
-      <div className={classes.container}>
+      {/* <div className={classes.container}>
         <PaginatedItems itemsPerPage={4} setRequestInfo={setRequestInfo} />
         <br />
         <br />
@@ -30,7 +30,7 @@ const RequestList = () => {
         <div>
           <RequestInfo requestInfo={requestInfo} />
         </div>
-      </div>
+      </div> */}
       <div>
         <RequestTable />
       </div>

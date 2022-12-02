@@ -1,7 +1,139 @@
+import { Button, Col, Row, Space, Spin, Table, Tag } from "antd";
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useContext } from "react";
+import { getApartmentById } from "../../../API/adminAPI";
+import { getRentRequest } from "../../../API/apartmentAPI";
+import AuthContext from "../../../store/auth-context";
+import RequestInfo from "./RequestInfo";
 
 const RequestTable = () => {
-  return <div>RequestTable</div>;
+  const [rentRequestList, setRentRequestList] = useState([]);
+  const [requestInfo, setRequestInfo] = useState({
+    cccd: "",
+    createDate: "",
+    fullName: "",
+    id: 0,
+    item: null,
+    itemId: 0,
+    numberOfParent: 0,
+    renter: null,
+    renterId: 0,
+    status: false,
+  });
+  const [apartmentInfo, setapartmentInfo] = useState({ status: 0, name: "" });
+
+  const authContext = useContext(AuthContext);
+
+  useEffect(() => {
+    getRentRequest(authContext.token)
+      .then((res) => {
+        setRentRequestList(
+          res.data
+            .sort((a, b) => b.id - a.id)
+            .map((item) => ({
+              ...item,
+              createDate: item.createDate.split("T")[0],
+            }))
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [authContext.token]);
+
+  useEffect(() => {
+    if (requestInfo.id !== 0) {
+      getApartmentById(requestInfo.itemId, authContext.token)
+        .then((res) => {
+          setapartmentInfo(res.data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [requestInfo.id]);
+  //   console.log("apartmentInfo: ", apartmentInfo);
+  const columns = [
+    {
+      title: "Tên người yêu cầu",
+      dataIndex: "fullName",
+    },
+    {
+      title: "Ngày gửi",
+      dataIndex: "createDate",
+    },
+    {
+      title: "Số định danh",
+      dataIndex: "cccd",
+    },
+    {
+      title: "Số người ",
+      dataIndex: "numberOfParent",
+    },
+    {
+      title: "Trạng thái",
+      dataIndex: "status",
+      render: (_, { status }) => {
+        // console.log(status);
+        if (status === false)
+          return (
+            <Tag color="green" key={status}>
+              Chưa xử lý
+            </Tag>
+          );
+        else
+          return (
+            <Tag color="volcano" key={status}>
+              Đã xử lý
+            </Tag>
+          );
+      },
+    },
+    {
+      title: "",
+      dataIndex: "option",
+      render: (text, record, index) => (
+        <Space size="middle">
+          <Button
+            onClick={() => {
+              setRequestInfo(record);
+            }}
+          >
+            Chi tiết
+          </Button>
+        </Space>
+      ),
+    },
+  ];
+  return (
+    <Row style={{ marginTop: "50px" }}>
+      <Col span={12}>
+        <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
+          Danh sách yêu cầu thuê
+        </h2>
+        <Table
+          rowKey="id"
+          columns={columns}
+          dataSource={rentRequestList}
+          pagination={{ defaultPageSize: "4" }}
+          loading={{
+            indicator: (
+              <div>
+                <Spin />
+              </div>
+            ),
+            spinning: rentRequestList.length === 0,
+          }}
+        />
+      </Col>
+      <Col span={12}>
+        <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
+          Thông tin chi tiết
+        </h2>
+        <RequestInfo requestInfo={requestInfo} />
+      </Col>
+    </Row>
+  );
 };
 
 export default RequestTable;
