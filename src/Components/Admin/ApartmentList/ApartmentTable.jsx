@@ -245,6 +245,14 @@ const ApartmentTable = () => {
             columns={columns}
             dataSource={apartmentList}
             pagination={{ defaultPageSize: "4" }}
+            loading={{
+              indicator: (
+                <div>
+                  <Spin />
+                </div>
+              ),
+              spinning: apartmentList.length === 0,
+            }}
           />
         </Col>
         <Col span={10}>
