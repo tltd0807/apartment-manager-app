@@ -22,7 +22,7 @@ const UnrentList = () => {
     <LayoutAuthenticated>
       <div className={classes.container}>
         <div>
-          <h1>Danh sách yêu cầu thuê</h1>
+          <h1>Danh sách yêu cầu hủy thuê</h1>
           <PaginatedItems itemsPerPage={4} setUnrentInfo={setUnrentInfo} />
         </div>
         <div>

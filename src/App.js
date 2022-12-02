@@ -26,13 +26,13 @@ function App() {
       )}
 
       {authCtx.isLoggedIn && (
-        <Route path="/admin/unpaid" element={<RequestList />} />
+        <Route path="/admin/request" element={<RequestList />} />
       )}
       {authCtx.isLoggedIn && (
         <Route path="/admin/unrent" element={<UnrentList />} />
       )}
       {authCtx.isLoggedIn && (
-        <Route path="/admin/request" element={<UnpaidList />} />
+        <Route path="/admin/unpaid" element={<UnpaidList />} />
       )}
       {authCtx.isLoggedIn && <Route path="/user" element={<UserPage />} />}
       <Route path="*" element={<NotFound />} />

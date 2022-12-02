@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import LayoutAuthenticated from "../../Layout/LayoutAuthenticated";
 import PaginatedItems from "./PaginatedItems/PaginatedItems";
 import classes from "./RequestList.module.css";
+import RequestTable from "./RequestTable";
 import RequestInfo from "./ResquestInfo/RequestInfo";
 
 const RequestList = () => {
@@ -29,6 +30,9 @@ const RequestList = () => {
         <div>
           <RequestInfo requestInfo={requestInfo} />
         </div>
+      </div>
+      <div>
+        <RequestTable />
       </div>
     </LayoutAuthenticated>
   );
