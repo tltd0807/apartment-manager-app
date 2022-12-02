@@ -33,7 +33,10 @@ const RequestInfo = (props) => {
           { userId: requestInfo.renterId, itemId: requestInfo.itemId },
           authContext.token
         )
-          .then((res) => success(res.message))
+          .then((res) => {
+            success(res.message);
+            props.setOnReload();
+          })
           .catch((err) => {
             error("Đã xảy ra lỗi vui lòng thử lại sau");
           });

@@ -10,6 +10,7 @@ import RequestInfo from "./RequestInfo";
 
 const RequestTable = () => {
   const [rentRequestList, setRentRequestList] = useState([]);
+  const [onReload, setOnReload] = useState(false);
   const [requestInfo, setRequestInfo] = useState({
     cccd: "",
     createDate: "",
@@ -22,37 +23,23 @@ const RequestTable = () => {
     renterId: 0,
     status: false,
   });
-  const [apartmentInfo, setapartmentInfo] = useState({ status: 0, name: "" });
-
   const authContext = useContext(AuthContext);
 
   useEffect(() => {
     getRentRequest(authContext.token)
       .then((res) => {
         setRentRequestList(
-          res.data
-            .sort((a, b) => b.id - a.id)
-            .map((item) => ({
-              ...item,
-              createDate: item.createDate.split("T")[0],
-            }))
+          res.data.reverse().map((item) => ({
+            ...item,
+            createDate: item.createDate.split("T")[0],
+          }))
         );
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [authContext.token]);
+  }, [authContext.token, onReload]);
 
-  useEffect(() => {
-    if (requestInfo.id !== 0) {
-      getApartmentById(requestInfo.itemId, authContext.token)
-        .then((res) => {
-          setapartmentInfo(res.data);
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [requestInfo.id]);
-  //   console.log("apartmentInfo: ", apartmentInfo);
   const columns = [
     {
       title: "Tên người yêu cầu",
@@ -130,7 +117,7 @@ const RequestTable = () => {
         <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
           Thông tin chi tiết
         </h2>
-        <RequestInfo requestInfo={requestInfo} />
+        <RequestInfo requestInfo={requestInfo} setOnReload={setOnReload} />
       </Col>
     </Row>
   );
