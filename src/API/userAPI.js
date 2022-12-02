@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const infoUser = async (token) => {
   const res = await axios.get(
-    `https://buildingmanager-api.herokuapp.com/api/Member/profile`,
+    `https://buildingmanager-api-v2.herokuapp.com/api/Member/profile`,
     { headers: { Authorization: `${token}` } }
   );
   return res.data;
@@ -10,7 +10,7 @@ export const infoUser = async (token) => {
 // infoUser(res.token).then((res) => console.log(res));
 export const editInfoUser = async (data, token) => {
   const res = await axios.put(
-    `https://buildingmanager-api.herokuapp.com/api/Member/edit-profile`,
+    `https://buildingmanager-api-v2.herokuapp.com/api/Member/edit-profile`,
     data,
     {
       headers: {
@@ -24,7 +24,7 @@ export const editInfoUser = async (data, token) => {
 
 export const sentRentRequest = async (data, token) => {
   const res = await axios.post(
-    `https://buildingmanager-api.herokuapp.com/api/Member/rent-request`,
+    `https://buildingmanager-api-v2.herokuapp.com/api/Member/rent-request`,
     data,
     {
       headers: {
@@ -37,7 +37,7 @@ export const sentRentRequest = async (data, token) => {
 };
 export const sentUnrentRequest = async (data, token) => {
   const res = await axios.post(
-    `https://buildingmanager-api.herokuapp.com/api/Member/unrent-request`,
+    `https://buildingmanager-api-v2.herokuapp.com/api/Member/unrent-request`,
     data,
     {
       headers: {
@@ -48,10 +48,10 @@ export const sentUnrentRequest = async (data, token) => {
   );
   return res.data;
 };
-// https://buildingmanager-api.herokuapp.com/api/Member/member
+// https://buildingmanager-api-v2.herokuapp.com/api/Member/member
 export const sentMemberRequest = async (data, token) => {
   const res = await axios.post(
-    `https://buildingmanager-api.herokuapp.com/api/Member/member`,
+    `https://buildingmanager-api-v2.herokuapp.com/api/Member/member`,
     data,
     {
       headers: {
@@ -64,7 +64,7 @@ export const sentMemberRequest = async (data, token) => {
 };
 export const rentedApartment = async (token) => {
   const res = await axios.get(
-    `https://buildingmanager-api.herokuapp.com/api/Member/profile-items`,
+    `https://buildingmanager-api-v2.herokuapp.com/api/Member/profile-items`,
     { headers: { Authorization: `${token}` } }
   );
   return res.data;

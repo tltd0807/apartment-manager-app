@@ -5,7 +5,7 @@ import axios from "axios";
 //   }
 export const assignUser = async (data, token) => {
   const res = await axios.put(
-    `https://buildingmanager-api.herokuapp.com/api/Admin/item/assign`,
+    `https://buildingmanager-api-v2.herokuapp.com/api/Admin/item/assign`,
     data,
     { headers: { Authorization: `${token}` } }
   );
@@ -16,7 +16,7 @@ export const assignUser = async (data, token) => {
 
 export const getApartmentFull = async (id, token) => {
   const res = await axios.put(
-    `https://buildingmanager-api.herokuapp.com/api/Admin/items/${id}`,
+    `https://buildingmanager-api-v2.herokuapp.com/api/Admin/items/${id}`,
     { headers: { Authorization: `${token}` } }
   );
   return res.data;
@@ -24,14 +24,14 @@ export const getApartmentFull = async (id, token) => {
 
 export const getApartmentById = async (id, token) => {
   const res = await axios.get(
-    `https://buildingmanager-api.herokuapp.com/api/Admin/items/${id}`,
+    `https://buildingmanager-api-v2.herokuapp.com/api/Admin/items/${id}`,
     { headers: { Authorization: `${token}` } }
   );
   return res.data;
 };
 export const editApartment = async (data, token) => {
   const res = await axios.put(
-    `https://buildingmanager-api.herokuapp.com/api/Admin/item`,
+    `https://buildingmanager-api-v2.herokuapp.com/api/Admin/item`,
     data,
     {
       headers: {
@@ -45,7 +45,7 @@ export const editApartment = async (data, token) => {
 
 export const assignApartment = async (data, token) => {
   const res = await axios.put(
-    `https://buildingmanager-api.herokuapp.com/api/Admin/item/assign`,
+    `https://buildingmanager-api-v2.herokuapp.com/api/Admin/item/assign`,
     data,
     {
       headers: {
@@ -62,7 +62,7 @@ export const assignApartment = async (data, token) => {
 // }
 export const unassignApartment = async (data, token) => {
   const res = await axios.put(
-    `https://buildingmanager-api.herokuapp.com/api/Admin/item/unassign`,
+    `https://buildingmanager-api-v2.herokuapp.com/api/Admin/item/unassign`,
     data,
     {
       headers: {
@@ -74,7 +74,7 @@ export const unassignApartment = async (data, token) => {
 };
 export const sentBill = async (id, data, token) => {
   const res = await axios.post(
-    `https://buildingmanager-api.herokuapp.com/api/Admin/monthly-bill?itemId=${id}`,
+    `https://buildingmanager-api-v2.herokuapp.com/api/Admin/monthly-bill?itemId=${id}`,
     data,
     {
       headers: {
