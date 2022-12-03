@@ -1,0 +1,11 @@
+.user-info {
+  color: white;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.layout {
+  min-height: 100vh;
+}

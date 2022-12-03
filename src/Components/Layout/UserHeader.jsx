@@ -1,11 +1,14 @@
-import { UserOutlined } from "@ant-design/icons";
+import React from "react";
+import classes from "./UserHeader.module.css";
 import { Avatar, Button, Layout, Menu, Modal } from "antd";
-import React, { useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useContext } from "react";
 import AuthContext from "../../store/auth-context";
-const { Footer, Sider, Content } = Layout;
+import { useState } from "react";
+import { UserOutlined } from "@ant-design/icons";
 
-const LayoutAuthenticated = (props) => {
+const { Header, Content, Footer } = Layout;
+const UserHeaderNew = (props) => {
   const navigate = useNavigate();
   const authCtx = useContext(AuthContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,30 +23,24 @@ const LayoutAuthenticated = (props) => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-  const LogoutHandler = () => {
-    showModal();
-  };
+
   const { state } = useLocation();
   const navItem = [
     {
-      label: "Trang chủ",
-      to: "/admin",
+      label: "Thông tin",
+      to: "/user/info",
     },
     {
-      label: "Căn hộ",
-      to: "/admin/apartments",
+      label: "Căn hộ trống",
+      to: "/user/apartments",
     },
     {
-      label: "Yêu cầu thuê",
-      to: "/admin/request",
+      label: "Hóa đơn",
+      to: "/user/bills",
     },
     {
-      label: "Yêu cầu hủy thuê",
-      to: "/admin/unrent",
-    },
-    {
-      label: "Căn hộ chưa thanh toán",
-      to: "/admin/unpaid",
+      label: "Căn hộ đang thuê",
+      to: "/user/rented",
     },
   ];
   const getItem = (label, key) => {
@@ -65,50 +62,55 @@ const LayoutAuthenticated = (props) => {
       >
         <p>Bạn muốn đăng xuất ?</p>
       </Modal>
-      <Layout style={{ minHeight: "100vh" }}>
-        <Sider style={{ background: "white" }}>
+      <Layout className={classes.layout}>
+        <Header className={classes.header}>
           <div
             style={{
               display: "flex",
               justifyContent: "flex-start",
               alignItems: "center",
-              marginTop: "20px",
               marginLeft: "10px",
+              fontWeight: "bold",
+              color: "white",
             }}
           >
-            <Avatar size={34} icon={<UserOutlined />} src={authCtx.avatarUrl} />
+            <Avatar size={45} icon={<UserOutlined />} src={authCtx.avatarUrl} />
             <span style={{ marginLeft: "10px" }}>{authCtx.userName}</span>
           </div>
           <Menu
-            defaultSelectedKeys={[state?.position || "0"]}
-            mode="inline"
-            style={{
-              marginTop: "20px",
-            }}
+            theme="dark"
+            mode="horizontal"
+            defaultSelectedKeys={[state?.position || "-1"]}
             onClick={(e) => {
               navigate(navItem[e.key].to, { state: { position: e.key } });
             }}
             items={items}
           />
-          <div style={{ paddingLeft: "10px", paddingRight: "10px" }}>
-            <Button
-              shape="round"
-              block
-              danger
-              style={{ marginTop: "10px" }}
-              onClick={LogoutHandler}
-            >
-              Đăng xuất
-            </Button>
+          <Button onClick={() => showModal()}>Đăng xuất</Button>
+        </Header>
+        <Content
+          style={{
+            padding: "0 50px",
+          }}
+        >
+          <div className="site-layout-content">{props.children}</div>
+        </Content>
+        <Footer
+          style={{
+            textAlign: "center",
+          }}
+        >
+          <div
+            style={{
+              textAlign: "center",
+              margin: "auto",
+            }}
+          >
+            Develop by To Dat &amp; Gia Minh 2022
           </div>
-        </Sider>
-        <Layout>
-          <Content style={{ padding: "40px 50px" }}>{props.children}</Content>
-          {/* <Footer>Footer</Footer> */}
-        </Layout>
+        </Footer>
       </Layout>
     </>
   );
 };
-
-export default LayoutAuthenticated;
+export default UserHeaderNew;

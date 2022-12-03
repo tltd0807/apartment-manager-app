@@ -12,6 +12,10 @@ import RequestList from "./Components/Admin/RequestList/RequestList";
 import UnrentList from "./Components/Admin/ApartmentList/UnrentList/UnrentList";
 import UnpaidList from "./Components/Admin/UnpaidList/UnpaidList";
 import ApartmentTable from "./Components/Admin/ApartmentList/ApartmentTable";
+import UserInfo from "./Pages/UserInfo";
+import Bills from "./Pages/UserPage/Bills";
+import RentedPage from "./Pages/UserPage/RentedPage";
+import EmptyApartment from "./Pages/UserPage/EmptyApartment";
 function App() {
   const authCtx = useContext(AuthContext);
 
@@ -35,6 +39,14 @@ function App() {
         <Route path="/admin/unpaid" element={<UnpaidList />} />
       )}
       {authCtx.isLoggedIn && <Route path="/user" element={<UserPage />} />}
+      {authCtx.isLoggedIn && <Route path="/user/info" element={<UserInfo />} />}
+      {authCtx.isLoggedIn && (
+        <Route path="/user/apartments" element={<EmptyApartment />} />
+      )}
+      {authCtx.isLoggedIn && <Route path="/user/bills" element={<Bills />} />}
+      {authCtx.isLoggedIn && (
+        <Route path="/user/rented" element={<RentedPage />} />
+      )}
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
