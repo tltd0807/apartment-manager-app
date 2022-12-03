@@ -31,8 +31,8 @@ const ApartmentTable = () => {
   const [imageUrl, setImageUrl] = useState();
   const [apartmentList, setApartmentList] = useState([]);
   const [fileList, setFileList] = useState([]);
-  const [messageApi, contextHolder] = message.useMessage();
   const [itemId, setItemId] = useState(-1);
+  const [messageApi, contextHolder] = message.useMessage();
   const error = (mes) => {
     messageApi.error(mes);
   };
@@ -82,6 +82,7 @@ const ApartmentTable = () => {
         <Space size="middle">
           <Button
             onClick={() => {
+              // console.log(record);
               setItemId(record.id);
             }}
           >
@@ -98,7 +99,7 @@ const ApartmentTable = () => {
         const dataSource = res.data;
         dataSource.map((item) => {
           delete item["avatarUrl"];
-          item["price"] = item["price"] + " USD/mo";
+          item["price"] = item["price"] + " USD/tháng";
         });
         // console.log(dataSource);
         setApartmentList(dataSource);
@@ -210,7 +211,7 @@ const ApartmentTable = () => {
           marginTop: 8,
         }}
       >
-        Upload
+        Tải hình
       </div>
     </div>
   );

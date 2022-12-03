@@ -66,7 +66,7 @@ const ApartmentInfo = (props) => {
               )}
             </Descriptions.Item>
             <Descriptions.Item label="Giá">
-              {itemInfo.price}USD/mo
+              {itemInfo.price}USD/tháng
             </Descriptions.Item>
             {itemInfo.status !== 0 && (
               <Descriptions.Item label="Người thuê: " span={2}>

@@ -26,23 +26,23 @@ const LayoutAuthenticated = (props) => {
   const { state } = useLocation();
   const navItem = [
     {
-      label: "Admin",
+      label: "Trang chủ",
       to: "/admin",
     },
     {
-      label: "Apartment List",
+      label: "Căn hộ",
       to: "/admin/apartments",
     },
     {
-      label: "Request List",
+      label: "Yêu cầu thuê",
       to: "/admin/request",
     },
     {
-      label: "Unrent List",
+      label: "Yêu cầu hủy thuê",
       to: "/admin/unrent",
     },
     {
-      label: "Unpaid List",
+      label: "Căn hộ chưa thanh toán",
       to: "/admin/unpaid",
     },
   ];
@@ -99,7 +99,7 @@ const LayoutAuthenticated = (props) => {
               style={{ marginTop: "10px" }}
               onClick={LogoutHandler}
             >
-              Logout
+              Đăng xuất
             </Button>
           </div>
         </Sider>
