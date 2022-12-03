@@ -6,6 +6,7 @@ import AuthContext from "../../../store/auth-context";
 
 const RequestInfo = (props) => {
   const [apartmentInfo, setapartmentInfo] = useState({ status: 0, name: "" });
+  const [isLoading, setIsLoading] = useState(false);
   const { requestInfo } = props;
   const authContext = useContext(AuthContext);
   const { confirm } = Modal;
@@ -33,7 +34,6 @@ const RequestInfo = (props) => {
         )
           .then((res) => {
             success(res.message);
-
             props.setOnReload((prev) => !prev);
           })
           .catch((err) => {
@@ -48,8 +48,11 @@ const RequestInfo = (props) => {
 
   useEffect(() => {
     if (requestInfo.id !== 0) {
+      setIsLoading(true);
+
       getApartmentById(requestInfo.itemId, authContext.token)
         .then((res) => {
+          setIsLoading(false);
           setapartmentInfo(res.data);
         })
         .catch((err) => console.log(err));
@@ -57,9 +60,10 @@ const RequestInfo = (props) => {
   }, [requestInfo.id]);
 
   return (
-    <div style={{ marginLeft: "100px" }}>
+    <div style={{ marginLeft: "100px", textAlign: "center" }}>
+      {isLoading && <Spin />}
       {contextHolder}
-      {apartmentInfo.name !== "" && (
+      {apartmentInfo.name !== "" && !isLoading && (
         <Descriptions title="" column={2}>
           <Descriptions.Item label="Tên người yêu cầu">
             {requestInfo.fullName}
@@ -92,6 +96,7 @@ const RequestInfo = (props) => {
         </Descriptions>
       )}
       {apartmentInfo.name !== "" &&
+        !isLoading &&
         (apartmentInfo.status === 0 && requestInfo.status === false ? (
           <Button onClick={showConfirm}>Đồng ý</Button>
         ) : (

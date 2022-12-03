@@ -1,36 +1,11 @@
 import React, { useState } from "react";
 import LayoutAuthenticated from "../../../Layout/LayoutAuthenticated";
 import UnrentRequest from "../../UnrentRequest/UnrentRequest";
-import PaginatedItems from "./PaginatedItems/PaginatedItems";
-import UnrentInfo from "./UnrentInfo/UnrentInfo";
+
 import classes from "./UnrentList.module.css";
 const UnrentList = () => {
-  const [unrentInfo, setUnrentInfo] = useState({
-    cccd: "",
-    createDate: "",
-    fullName: "",
-    handleTime: "",
-    handlerId: -1,
-    id: -1,
-    item: null,
-    itemId: 0,
-    renter: null,
-    renterId: -1,
-    status: false,
-  });
-  // console.log(unrentInfo);
   return (
     <LayoutAuthenticated>
-      <div className={classes.container}>
-        <div>
-          <h1>Danh sách yêu cầu hủy thuê</h1>
-          <PaginatedItems itemsPerPage={4} setUnrentInfo={setUnrentInfo} />
-        </div>
-        <div>
-          <h1 className={classes.header}>Thông tin yêu cầu</h1>
-          <UnrentInfo unrentInfo={unrentInfo} />
-        </div>
-      </div>
       <div>
         <UnrentRequest />
       </div>

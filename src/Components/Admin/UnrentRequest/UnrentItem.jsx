@@ -6,6 +6,7 @@ import { unassignApartment } from "../../../API/adminAPI";
 import { getAminApartmentById } from "../../../API/apartmentAPI";
 
 const UnrentItem = (props) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [apartmentInfo, setapartmentInfo] = useState({ status: 0, name: "" });
   const { unrentInfo } = props;
   const authContext = useContext(AuthContext);
@@ -47,15 +48,20 @@ const UnrentItem = (props) => {
   };
   useEffect(() => {
     if (unrentInfo.id !== 0) {
+      setIsLoading(true);
       getAminApartmentById(unrentInfo.itemId, authContext.token)
-        .then((res) => setapartmentInfo(res.data))
+        .then((res) => {
+          setapartmentInfo(res.data);
+          setIsLoading(false);
+        })
         .catch((err) => console.log(err));
     }
   }, [unrentInfo.id]);
   return (
-    <div style={{ marginLeft: "100px" }}>
+    <div style={{ marginLeft: "100px", textAlign: "center" }}>
+      {isLoading && <Spin />}
       {contextHolder}
-      {unrentInfo.name !== "" && (
+      {apartmentInfo.name !== "" && !isLoading && (
         <Descriptions title="" column={2}>
           <Descriptions.Item label="Tên người yêu cầu">
             {unrentInfo.fullName}
@@ -74,6 +80,7 @@ const UnrentItem = (props) => {
         </Descriptions>
       )}
       {apartmentInfo.name !== "" &&
+        !isLoading &&
         (unrentInfo.status === false ? (
           <Button onClick={showConfirm}>Đồng ý</Button>
         ) : (

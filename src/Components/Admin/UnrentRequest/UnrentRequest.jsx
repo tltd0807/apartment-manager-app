@@ -95,6 +95,7 @@ const UnrentRequest = () => {
         <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
           Danh sách yêu cầu hủy thuê
         </h2>
+
         <Table
           rowKey="id"
           columns={columns}
