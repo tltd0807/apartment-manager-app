@@ -78,6 +78,7 @@ const UserHeaderNew = (props) => {
             <span style={{ marginLeft: "10px" }}>{authCtx.userName}</span>
           </div>
           <Menu
+            style={{ minWidth: 0, flex: "auto", justifyContent: "center" }}
             theme="dark"
             mode="horizontal"
             defaultSelectedKeys={[state?.position || "-1"]}
