@@ -14,6 +14,7 @@ import {
   Spin,
   Upload,
   message,
+  Modal,
 } from "antd";
 const UserInfo = () => {
   const [info, setInfo] = useState({});
@@ -24,6 +25,28 @@ const UserInfo = () => {
   const [reload, setReload] = useState(true);
   const authCtx = useContext(AuthContext);
   const [messageApi, contextHolder] = message.useMessage();
+  const { confirm } = Modal;
+  const showConfirm = (formData, token) => {
+    confirm({
+      title: "XÁC NHẬN",
+      content: `Thay đổi thông tin?`,
+      onOk() {
+        editInfoUser(formData, token)
+          .then((res) => {
+            success("Thay đổi thành công.");
+            setReload((prev) => !prev);
+          })
+          .catch((err) => {
+            console.log(err);
+            error("Cập nhật thất bại thử lại sau");
+          });
+      },
+      onCancel() {
+        // console.log("cancel");
+        return false;
+      },
+    });
+  };
   const error = (mes) => {
     messageApi.error(mes);
   };
@@ -31,7 +54,7 @@ const UserInfo = () => {
     messageApi.success(mes);
   };
   const onFinish = (values) => {
-    console.log(values);
+    // console.log(values);
     const newPhoneNumber = values.phoneNumber
       ? values.phoneNumber
       : info.phoneNumber;
@@ -47,15 +70,7 @@ const UserInfo = () => {
     const formData = new FormData();
     formData.append("Avatar", newAva);
     formData.append("PhoneNumber", newPhoneNumber);
-    editInfoUser(formData, authCtx.token)
-      .then((res) => {
-        success("Thay đổi thành công.");
-        setReload((prev) => !prev);
-      })
-      .catch((err) => {
-        console.log(err);
-        error("Cập nhật thất bại thử lại sau");
-      });
+    showConfirm(formData, authCtx.token);
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);

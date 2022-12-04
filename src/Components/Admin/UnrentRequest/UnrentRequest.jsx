@@ -11,6 +11,7 @@ const UnrentRequest = () => {
   const authContext = useContext(AuthContext);
   const [onReload, setOnReload] = useState(false);
   const [unrentRequestList, setUnrentRequestList] = useState([]);
+  const [isFetched, setIsFetched] = useState(false);
   const [unrentInfo, setUnrentInfo] = useState({
     cccd: "",
     createDate: "",
@@ -25,6 +26,7 @@ const UnrentRequest = () => {
     status: false,
   });
   useEffect(() => {
+    setIsFetched(true);
     getUnrentRequest(authContext.token)
       .then((res) => {
         setUnrentRequestList(
@@ -33,6 +35,7 @@ const UnrentRequest = () => {
             createDate: item.createDate.split("T")[0],
           }))
         );
+        if (res.data.length === 0) setIsFetched(false);
         // console.log(res.data);
       })
       .catch((err) => {
@@ -107,7 +110,7 @@ const UnrentRequest = () => {
                 <Spin />
               </div>
             ),
-            spinning: unrentRequestList.length === 0,
+            spinning: unrentRequestList.length === 0 && isFetched,
           }}
         />
       </Col>
