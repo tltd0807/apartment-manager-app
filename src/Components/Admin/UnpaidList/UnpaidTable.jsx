@@ -25,14 +25,15 @@ import { sentBill } from "../../../API/adminAPI";
 
 const UnpaidTable = () => {
   const authContext = useContext(AuthContext);
-  const [unpaidList, setUnpaidList] = useState([{}]);
-  const [itemId, setItemId] = useState(0);
+  const [unpaidList, setUnpaidList] = useState([]);
+  // const [itemId, setItemId] = useState(0);
   const [formIsShow, setFormIsShow] = useState(false);
   const [loading, setLoading] = useState(false);
   const [imageWaterUrl, setImageWaterUrl] = useState();
   const [imageElecUrl, setImageElecUrl] = useState();
   const [messageApi, contextHolder] = message.useMessage();
   const [reload, setReload] = useState(false);
+  const [isFetched, setIsFetched] = useState(false);
   const error = (mes) => {
     messageApi.error(mes);
   };
@@ -40,9 +41,11 @@ const UnpaidTable = () => {
     messageApi.success(mes);
   };
   useEffect(() => {
+    setIsFetched(true);
     getApartmentUnpaid(authContext.token)
       .then((res) => {
         setUnpaidList(res.data);
+        if (res.data.length === 0) setIsFetched(false);
       })
       .catch((err) => {
         console.log(err);
@@ -128,8 +131,8 @@ const UnpaidTable = () => {
           <Button
             onClick={() => {
               //   console.log(record.id);
-              setItemId(record.id);
-              setFormIsShow(true);
+              // setItemId(record.id);
+              setFormIsShow((prevState) => !prevState);
             }}
           >
             Mở
@@ -199,7 +202,7 @@ const UnpaidTable = () => {
       <Row>
         <Col span={14}>
           <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
-            Danh sách căn hộ
+            Danh sách căn hộ chưa thanh toán
           </h2>
           <Table
             rowKey="id"
@@ -212,7 +215,7 @@ const UnpaidTable = () => {
                   <Spin />
                 </div>
               ),
-              spinning: unpaidList.length === 0,
+              spinning: unpaidList.length === 0 && isFetched,
             }}
           />
         </Col>
@@ -362,7 +365,7 @@ const UnpaidTable = () => {
                 }}
               >
                 <Button type="primary" htmlType="submit">
-                  Submit
+                  Gửi
                 </Button>
               </Form.Item>
             </Form>

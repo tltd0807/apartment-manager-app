@@ -187,7 +187,7 @@ const RentedPage = () => {
                 }}
               >
                 <Button type="primary" htmlType="submit">
-                  Submit
+                  Yêu cầu
                 </Button>
               </Form.Item>
             </Form>
