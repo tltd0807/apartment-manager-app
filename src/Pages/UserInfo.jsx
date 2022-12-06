@@ -193,12 +193,12 @@ const UserInfo = () => {
             >
               <Form
                 labelCol={{
-                  span: 14,
+                  span: 10,
                 }}
                 wrapperCol={{
                   span: 14,
                 }}
-                layout="vertical"
+                layout="horizontal"
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
               >
@@ -237,7 +237,12 @@ const UserInfo = () => {
                     )}
                   </Upload>
                 </Form.Item>
-                <Form.Item>
+                <Form.Item
+                  wrapperCol={{
+                    offset: 8,
+                    span: 8,
+                  }}
+                >
                   <Button type="primary" htmlType="submit">
                     Thay đổi
                   </Button>
