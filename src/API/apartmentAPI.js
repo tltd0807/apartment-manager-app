@@ -1,5 +1,13 @@
 import axios from "axios";
 
+export const getAllApartmentNoAuth = async (type = 0, pageNum = 0) => {
+  const res = await axios.get(
+    `https://buildingmanager-api-v2.herokuapp.com/api/System/items?${
+      type !== 0 ? `Types=${type}&` : ""
+    }PageNumber=${pageNum}`
+  );
+  return res;
+};
 export const getApartmentById = async (id) => {
   const res = await axios.get(
     `https://buildingmanager-api-v2.herokuapp.com/api/System/items/${id}`

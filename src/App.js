@@ -26,6 +26,7 @@ function App() {
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/apartment" element={<ApartmentPage />} />
+      {/* <Route path="/apartmentNew" element={<ApartmentPage />} /> */}
       {authCtx.isLoggedIn && <Route path="/admin" element={<AdminPage />} />}
       {authCtx.isLoggedIn && (
         <Route path="/admin/apartments" element={<ApartmentTable />} />

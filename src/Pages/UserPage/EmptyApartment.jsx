@@ -1,11 +1,11 @@
 import React from "react";
 import UserHeaderNew from "../../Components/Layout/UserHeader";
-import ApartmentList from "../LandingPage/ApartmentList/ApartmentList";
+import ApartmentListNew from "../../Components/User/ApartmentList/ApartmentListNew";
 
 const EmptyApartment = () => {
   return (
     <UserHeaderNew>
-      <ApartmentList />
+      <ApartmentListNew />
     </UserHeaderNew>
   );
 };
