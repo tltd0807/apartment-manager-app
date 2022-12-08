@@ -118,9 +118,9 @@ const BillTable = () => {
     },
   ];
   const onFinish = (values) => {
-    console.log("values: ", values);
-    console.log(values.expiry["$d"].getMonth() + 1);
-    console.log(values.expiry["$d"].getFullYear());
+    // console.log("values: ", values);
+    // console.log(values.expiry["$d"].getMonth() + 1);
+    // console.log(values.expiry["$d"].getFullYear());
     showConfirm(
       {
         cardNumber: values.cardNumber,

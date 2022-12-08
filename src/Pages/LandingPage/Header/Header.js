@@ -3,8 +3,19 @@ import classes from "./Header.module.css";
 import Button from "../../../Components/Layout/Button/Button";
 import IMG from "../../../assets/Image/illustration-working.svg";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import AuthContext from "../../../store/auth-context";
 const Header = (props) => {
   const navigate = useNavigate();
+  const authCtx = useContext(AuthContext);
+  const signInHandler = () => {
+    if (authCtx.token) {
+      navigate("/user");
+      return;
+    } else {
+      navigate("/signin");
+    }
+  };
 
   return (
     <header className={classes.header}>
@@ -21,7 +32,7 @@ const Header = (props) => {
               Iaculis nunc sed augue lacus viverra vitae congue.
             </p>
             <div className={classes.login}>
-              <Button onClick={() => navigate("/signin")}>Đăng nhập</Button>
+              <Button onClick={signInHandler}>Đăng nhập</Button>
             </div>
           </div>
           <div>

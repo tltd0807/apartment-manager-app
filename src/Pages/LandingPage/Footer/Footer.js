@@ -1,15 +1,26 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../../Components/Layout/Button/Button";
+import AuthContext from "../../../store/auth-context";
 import classes from "./Footer.module.css";
 
 const Footer = () => {
   const navigate = useNavigate();
+  const authCtx = useContext(AuthContext);
+  const signInHandler = () => {
+    if (authCtx.token) {
+      navigate("/user");
+      return;
+    } else {
+      navigate("/signin");
+    }
+  };
 
   return (
     <>
       <section className={classes["footer-section"]}>
         <h2>Mua căn hộ ngay hôm nay</h2>
-        <Button onClick={() => navigate("/signin")}>Đăng nhập</Button>
+        <Button onClick={signInHandler}>Đăng nhập</Button>
       </section>
       <footer>
         <div className={classes["footer-left"]}>

@@ -11,14 +11,14 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+    // console.log("Received values of form: ", values);
     setLoading(true);
     loginUser({
       username: values.username,
       password: values.password,
     })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         authCtx.login(res.token, res.username, res.avatarUrl);
         if (res.roleId === 1) {
           navigate("/user");

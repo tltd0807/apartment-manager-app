@@ -31,7 +31,6 @@ const RentedPage = () => {
       title: "XÁC NHẬN",
       content: "Yêu cầu hủy thuê?",
       onOk() {
-        console.log("OK");
         sentUnrentRequest(formData, token)
           .then((res) => {
             success(res.message);
