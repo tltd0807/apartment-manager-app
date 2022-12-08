@@ -3,7 +3,7 @@ import { Spin, Segmented, Pagination } from "antd";
 import classes from "./ApartmentList.module.css";
 import { getAllApartmentNoAuth } from "../../../API/apartmentAPI";
 import ApartmentItem from "../../../Pages/LandingPage/ApartmentList/ApartmentItem/ApartmentItem";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const typeArr = [
   "Tất cả",
   "Phòng thu",

@@ -1,0 +1,21 @@
+.container {
+  width: 70vw;
+  margin: auto;
+  display: flex;
+}
+.carousel {
+  width: 50%;
+  margin-right: 50px;
+}
+.img-container {
+  width: fit-content;
+  margin: 0;
+  /* width: 50%; */
+}
+.img {
+  width: 500px;
+  height: 450px;
+}
+.content {
+  margin-top: 50px;
+}

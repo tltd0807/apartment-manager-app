@@ -17,6 +17,7 @@ import Bills from "./Pages/UserPage/Bills";
 import RentedPage from "./Pages/UserPage/RentedPage";
 import EmptyApartment from "./Pages/UserPage/EmptyApartment";
 import SignUp from "./Pages/SignUp/SignUp";
+import ApartmentPageNew from "./Pages/ApartmentPage/ApartmentPageNew";
 function App() {
   const authCtx = useContext(AuthContext);
 
@@ -25,8 +26,8 @@ function App() {
       <Route path="/" element={<Landing />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
-      <Route path="/apartment" element={<ApartmentPage />} />
-      {/* <Route path="/apartmentNew" element={<ApartmentPage />} /> */}
+      <Route path="/apartmentOld" element={<ApartmentPage />} />
+      <Route path="/apartment" element={<ApartmentPageNew />} />
       {authCtx.isLoggedIn && <Route path="/admin" element={<AdminPage />} />}
       {authCtx.isLoggedIn && (
         <Route path="/admin/apartments" element={<ApartmentTable />} />
