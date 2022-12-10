@@ -75,6 +75,17 @@ const RequestTable = () => {
             </Tag>
           );
       },
+      filters: [
+        {
+          text: "Chưa xử lý",
+          value: false,
+        },
+        {
+          text: "Đã xử lý",
+          value: true,
+        },
+      ],
+      onFilter: (value, record) => record.status === value,
     },
     {
       title: "",

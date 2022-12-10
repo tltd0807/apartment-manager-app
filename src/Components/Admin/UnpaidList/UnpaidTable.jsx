@@ -122,6 +122,17 @@ const UnpaidTable = () => {
             </Tag>
           );
       },
+      filters: [
+        {
+          text: "Chưa gửi",
+          value: false,
+        },
+        {
+          text: "Đã gửi",
+          value: true,
+        },
+      ],
+      onFilter: (value, record) => record.hasMonthlyBill === value,
     },
     {
       title: "",
