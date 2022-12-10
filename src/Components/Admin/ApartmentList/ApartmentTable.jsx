@@ -55,6 +55,25 @@ const ApartmentTable = () => {
     {
       title: "Loại",
       dataIndex: "type",
+      filters: [
+        {
+          text: "Studio",
+          value: "Studio",
+        },
+        {
+          text: "2PN 1VS",
+          value: "2PN 1VS",
+        },
+        {
+          text: "2PN 2VS",
+          value: "2PN 2VS",
+        },
+        {
+          text: "3PN 2VS",
+          value: "3PN 2VS",
+        },
+      ],
+      onFilter: (value, record) => record.type.indexOf(value) === 0,
     },
     {
       title: "Trạng thái",
@@ -74,6 +93,17 @@ const ApartmentTable = () => {
             </Tag>
           );
       },
+      filters: [
+        {
+          text: "Còn trống",
+          value: 0,
+        },
+        {
+          text: "Đã được thuê",
+          value: 1,
+        },
+      ],
+      onFilter: (value, record) => record.status === value,
     },
     {
       title: "",
@@ -237,7 +267,7 @@ const ApartmentTable = () => {
     <LayoutAuthenticated>
       {contextHolder}
       <Row>
-        <Col span={8}>
+        <Col span={10}>
           <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
             Danh sách căn hộ
           </h2>
@@ -256,7 +286,7 @@ const ApartmentTable = () => {
             }}
           />
         </Col>
-        <Col span={10}>
+        <Col span={8}>
           <ApartmentInfo itemId={itemId} />
         </Col>
         <Col span={6}>
@@ -285,6 +315,9 @@ const ApartmentTable = () => {
                   message: "Vui lòng nhập mã căn hộ",
                 },
               ]}
+              wrapperCol={{
+                span: 4,
+              }}
             >
               <Input />
             </Form.Item>
