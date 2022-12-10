@@ -17,6 +17,7 @@ import AuthContext from "../../store/auth-context";
 
 const RentedPage = () => {
   const [rentedList, setRentedList] = useState([]);
+  const [isFetched, setIsFetched] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
   const { confirm } = Modal;
   const authCtx = useContext(AuthContext);
@@ -46,14 +47,18 @@ const RentedPage = () => {
   };
 
   useEffect(() => {
+    // setIsFetched(true);
+
     rentedApartment(authCtx.token)
       .then((res) => {
-        // console.log(res);
+        console.log("sag");
         setRentedList(res.data);
+        if (res.data.length === 0) setIsFetched(true);
       })
       .catch((err) => {
         console.log(err);
-        window.alert("đã xảy ra lỗi vui lòng thử lại sau");
+
+        error("đã xảy ra lỗi vui lòng thử lại sau");
       });
   }, []);
 
@@ -123,7 +128,7 @@ const RentedPage = () => {
                     <Spin />
                   </div>
                 ),
-                spinning: rentedList.length === 0,
+                spinning: rentedList.length === 0 && !isFetched,
               }}
             />
           </Col>

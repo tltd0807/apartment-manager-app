@@ -10,8 +10,14 @@ const Header = (props) => {
   const authCtx = useContext(AuthContext);
   const signInHandler = () => {
     if (authCtx.token) {
-      navigate("/user");
-      return;
+      // console.log("authCtx.role", authCtx.role);
+      if (authCtx.role == 1) {
+        navigate("/user");
+        return;
+      } else if (authCtx.role == 2) {
+        navigate("/admin");
+        return;
+      }
     } else {
       navigate("/signin");
     }

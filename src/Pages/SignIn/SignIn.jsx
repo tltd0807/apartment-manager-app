@@ -19,7 +19,7 @@ const SignIn = () => {
     })
       .then((res) => {
         // console.log(res);
-        authCtx.login(res.token, res.username, res.avatarUrl);
+        authCtx.login(res.token, res.username, res.avatarUrl, res.roleId);
         if (res.roleId === 1) {
           navigate("/user");
         } else {

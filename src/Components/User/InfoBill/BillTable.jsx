@@ -24,6 +24,7 @@ const monthFormat = "YYYY/MM";
 const BillTable = () => {
   const [billList, setBillList] = useState([]);
   const [isFetched, setIsFetched] = useState(false);
+  const [reload, setReload] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
   const { confirm } = Modal;
   const authCtx = useContext(AuthContext);
@@ -42,7 +43,7 @@ const BillTable = () => {
         payBill(token, data)
           .then((res) => {
             success("Thanh toán thành công");
-            setIsFetched((prev) => !prev);
+            setReload((prev) => !prev);
           })
           .catch((err) => {
             error("Thanh toán thất bại");
@@ -54,19 +55,19 @@ const BillTable = () => {
     });
   };
   useEffect(() => {
-    setIsFetched(true);
+    // console.log("first");
     infoBill(authCtx.token)
       .then((res) => {
         // console.log(res.data);
         setBillList(res.data);
-        if (res.data.length === 0) setIsFetched(false);
+        if (res.data.length === 0) setIsFetched(true);
       })
 
       .catch((err) => {
         console.log(err);
-        window.alert("đã xảy ra lỗi vui lòng thử lại sau");
+        error("đã xảy ra lỗi vui lòng thử lại sau");
       });
-  }, [isFetched]);
+  }, [reload]);
 
   const columns = [
     {
@@ -155,7 +156,7 @@ const BillTable = () => {
                     <Spin />
                   </div>
                 ),
-                spinning: billList.length === 0 && isFetched,
+                spinning: billList.length === 0 && !isFetched,
               }}
             />
           </Col>
