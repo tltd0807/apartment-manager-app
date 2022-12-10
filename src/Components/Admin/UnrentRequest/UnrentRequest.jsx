@@ -29,12 +29,7 @@ const UnrentRequest = () => {
     setIsFetched(true);
     getUnrentRequest(authContext.token)
       .then((res) => {
-        setUnrentRequestList(
-          res.data.reverse().map((item) => ({
-            ...item,
-            createDate: item.createDate.split("T")[0],
-          }))
-        );
+        setUnrentRequestList(res.data.reverse());
         if (res.data.length === 0) setIsFetched(false);
         // console.log(res.data);
       })
@@ -51,6 +46,16 @@ const UnrentRequest = () => {
     {
       title: "Ngày gửi",
       dataIndex: "createDate",
+      render: (_, { createDate }) => {
+        return createDate.split("T")[0].split("-").reverse().join("-");
+      },
+      sorter: (a, b) => {
+        let date1 = new Date(a.createDate);
+        let date2 = new Date(b.createDate);
+        if (date1 > date2) return 1;
+        if (date1 < date2) return -1;
+        return 0;
+      },
     },
     {
       title: "Số định danh",

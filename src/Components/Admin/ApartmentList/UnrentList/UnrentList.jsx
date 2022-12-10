@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import LayoutAuthenticated from "../../../Layout/LayoutAuthenticated";
 import UnrentRequest from "../../UnrentRequest/UnrentRequest";
 
-import classes from "./UnrentList.module.css";
 const UnrentList = () => {
   return (
     <LayoutAuthenticated>

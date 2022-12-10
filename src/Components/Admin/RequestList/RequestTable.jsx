@@ -28,12 +28,7 @@ const RequestTable = () => {
   useEffect(() => {
     getRentRequest(authContext.token)
       .then((res) => {
-        setRentRequestList(
-          res.data.reverse().map((item) => ({
-            ...item,
-            createDate: item.createDate.split("T")[0],
-          }))
-        );
+        setRentRequestList(res.data.reverse());
       })
       .catch((err) => {
         console.log(err);
@@ -48,6 +43,16 @@ const RequestTable = () => {
     {
       title: "Ngày gửi",
       dataIndex: "createDate",
+      render: (_, { createDate }) => {
+        return createDate.split("T")[0].split("-").reverse().join("-");
+      },
+      sorter: (a, b) => {
+        let date1 = new Date(a.createDate);
+        let date2 = new Date(b.createDate);
+        if (date1 > date2) return 1;
+        if (date1 < date2) return -1;
+        return 0;
+      },
     },
     {
       title: "Số định danh",
