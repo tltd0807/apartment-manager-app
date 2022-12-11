@@ -26,7 +26,7 @@ export const getAminApartmentById = async (id, token) => {
 export const getAllApartment = async (token) => {
   // ?PageSize=100 thêm cái này vào cuối url để lấy hết
   const res = await axios.get(
-    `https://buildingmanager-api-v2.herokuapp.com/api/Admin/items?PageSize=100 `,
+    `https://buildingmanager-api-v2.herokuapp.com/api/Admin/items?PageSize=1000`,
     { headers: { Authorization: `${token}` } }
   );
   return res.data;
@@ -35,7 +35,7 @@ export const getAllApartment = async (token) => {
 export const getApartmentUnpaid = async (token) => {
   // ?PageSize=100 thêm cái này vào cuối url để lấy hết
   const res = await axios.get(
-    `https://buildingmanager-api-v2.herokuapp.com/api/Admin/unpaied-items?PageSize=100 `,
+    `https://buildingmanager-api-v2.herokuapp.com/api/Admin/unpaied-items?PageSize=1000`,
     { headers: { Authorization: `${token}` } }
   );
   return res.data;
@@ -43,7 +43,7 @@ export const getApartmentUnpaid = async (token) => {
 
 export const getRentRequest = async (token) => {
   const res = await axios.get(
-    `https://buildingmanager-api-v2.herokuapp.com/api/Admin/rent-request?PageSize=100`,
+    `https://buildingmanager-api-v2.herokuapp.com/api/Admin/rent-request?PageSize=1000`,
     { headers: { Authorization: `${token}` } }
   );
   return res.data;
@@ -51,7 +51,7 @@ export const getRentRequest = async (token) => {
 
 export const getUnrentRequest = async (token) => {
   const res = await axios.get(
-    `https://buildingmanager-api-v2.herokuapp.com/api/Admin/unrent-request?PageSize=100`,
+    `https://buildingmanager-api-v2.herokuapp.com/api/Admin/unrent-request?PageSize=1000`,
     { headers: { Authorization: `${token}` } }
   );
   return res.data;
