@@ -136,6 +136,7 @@ const ApartmentPageNew = () => {
                     src={info.avatarUrl}
                     alt="Apartment Image"
                     className={classes["img"]}
+                    style={{ width: "650px", height: "450px" }}
                   />
                 </div>
                 <div className={classes["img-container"]}>
@@ -143,6 +144,7 @@ const ApartmentPageNew = () => {
                     src={info.pictureUrl[0]}
                     alt="Apartment Image"
                     className={classes["img"]}
+                    style={{ width: "650px", height: "450px" }}
                   />
                 </div>
                 <div className={classes["img-container"]}>
@@ -150,6 +152,7 @@ const ApartmentPageNew = () => {
                     src={info.pictureUrl[1]}
                     alt="Apartment Image"
                     className={classes["img"]}
+                    style={{ width: "650px", height: "450px" }}
                   />
                 </div>
                 <div className={classes["img-container"]}>
@@ -157,6 +160,7 @@ const ApartmentPageNew = () => {
                     src={info.pictureUrl[2]}
                     alt="Apartment Image"
                     className={classes["img"]}
+                    style={{ width: "650px", height: "450px" }}
                   />
                 </div>
               </Carousel>
