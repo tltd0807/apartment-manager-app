@@ -159,7 +159,11 @@ const UserInfo = () => {
                     <Image width={100} src={info.avatarUrl} />
                   </Image.PreviewGroup>
                 </div>
-                <Descriptions title="" column={3}>
+                <Descriptions
+                  title=""
+                  column={1}
+                  style={{ marginLeft: "50px" }}
+                >
                   <Descriptions.Item label="Tên ">
                     {info.username}
                   </Descriptions.Item>
