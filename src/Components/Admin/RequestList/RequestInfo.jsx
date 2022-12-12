@@ -69,7 +69,13 @@ const RequestInfo = (props) => {
             {requestInfo.fullName}
           </Descriptions.Item>
           <Descriptions.Item label="Ngày tạo">
-            {requestInfo.createDate}
+            {requestInfo.createDate.split("T")[1].split(".")[0] +
+              " " +
+              requestInfo.createDate
+                .split("T")[0]
+                .split("-")
+                .reverse()
+                .join("-")}
           </Descriptions.Item>
 
           <Descriptions.Item label="Số định danh người thuê">

@@ -67,7 +67,13 @@ const UnrentItem = (props) => {
             {unrentInfo.fullName}
           </Descriptions.Item>
           <Descriptions.Item label="Ngày tạo">
-            {unrentInfo.createDate}
+            {unrentInfo.createDate.split("T")[1].split(".")[0] +
+              " " +
+              unrentInfo.createDate
+                .split("T")[0]
+                .split("-")
+                .reverse()
+                .join("-")}
           </Descriptions.Item>
 
           <Descriptions.Item label="Số định danh người thuê">
