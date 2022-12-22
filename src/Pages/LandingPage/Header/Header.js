@@ -9,8 +9,7 @@ const Header = (props) => {
   const navigate = useNavigate();
   const authCtx = useContext(AuthContext);
   const signInHandler = () => {
-    if (authCtx.token) {
-      // console.log("authCtx.role", authCtx.role);
+    if (authCtx.token && authCtx.token !== "undefined") {
       if (authCtx.role == 1) {
         navigate("/user");
         return;
