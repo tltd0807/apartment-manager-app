@@ -85,3 +85,18 @@ export const sentBill = async (id, data, token) => {
   );
   return res.data;
 };
+
+// https://buildingmanager-api-v2.herokuapp.com/api/Admin/monthly-revenue?from=2022-11-19T16%3A48%3A45.368Z&to=2022-12-19T16%3A48%3A45.368Z
+
+export const getStatic = async (from, to, token) => {
+  const res = await axios.get(
+    `https://buildingmanager-api-v2.herokuapp.com/api/Admin/monthly-revenue?from=${from}&to=${to}`,
+
+    {
+      headers: {
+        Authorization: `${token}`,
+      },
+    }
+  );
+  return res.data;
+};
